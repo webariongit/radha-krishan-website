@@ -81,7 +81,7 @@
 
     <div class="bottom_header bg-white d-lg-block d-none">
         <div class="container" >
-            <ul class="d-flex flex-row align-items-center position-relative gap-50 " id="menu-container">
+            <ul class="position-relative d-flex justify-content-center flex-row align-items-center position-relative gap-50 " id="menu-container">
             <template id="header-navigation-menu"></template>
                
                 <li class="py-header list-menu">
