@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LaTeX to HTML Conversion</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+
+<div class="latexExpression">
+    \( f(x) = \int_{-\infty}^{\infty} \hat{f}(\xi) e^{2 \pi i \xi x} d\xi \)
+</div>
+
+<div class="latexExpression">
+    \( f(x) = \int_{-\infty}^{\infty} \hat{f}(\xi) e^{2 \pi i \xi x} d\xi \)
+</div>
+
+<div class="latexExpression">
+    \( \sum_{\mathclap{1\le i\le j\le n}} x_{ij} \)
+</div>
+
+<div class="latexExpression">
+    \( \binom{n}{k} \)
+</div>
+</div>
+
+
+
+<script>
+    let latex = document.getElementsByClassName('latexExpression');
+
+    latex.forEach(element => {
+        MathJax.typesetPromise(element);
+    });
+    
+</script>
+
+</body>
+</html>

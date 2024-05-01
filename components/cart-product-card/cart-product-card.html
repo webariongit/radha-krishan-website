@@ -1,0 +1,29 @@
+<div class="col flex-column d-flex gap-3">
+    <div
+        class="cart-card bg-white rounded-3 d-flex flex-md-row flex-column gap-4 position-relative align-items-start p-3">
+        <div class="rounded-4 border-green2 cart_image overflow-hidden">
+            <img src="{{image_thumb}}" alt="cart-image" width="" height="">
+        </div>
+        <div class="col">
+            <h3 class="font-16 m-med text-black mb-12 track-1">{{productname}}
+            </h3>
+            <h2 class="font-16 m-bd text-black mb-12 track-1">₹{{subtotal}}</h2>
+            <p class="text-grey2 font-12 m-reg mb-3">{{productcode}}</p>
+            <div class="d-flex align-items-center gap-2 mb-11">
+                <button class="w-30 rounded-circle border-0 bg-lightgreen" onclick="updateProductQty(-1, '{{id}}')">
+                    <i class="fa fa-minus text-green font-16"></i>
+                </button>
+                <input type="text" id="product-cart-quantity-{{id}}" value="{{qty}}" name="product_count" id="product_count"
+                    class="productCountSelect  px-1 py-1 rounded-3">
+                <button class="w-30 rounded-circle text-center border-0 bg-lightgreen" onclick="updateProductQty(1, '{{id}}')">
+                    <i class="fa fa-plus text-green font-16"></i>
+                </button>
+            </div>
+            <button id="move-wishlist-btn-{{id}}"  onclick="moveToWishlist('{{id}}')" type="button" class="btn main-btn">Move To Wishlist</button>
+            <!-- <p class="text-green  font-14 text-start m-reg">Delivery by - 2nd Mar</p> -->
+        </div>
+        <button class="wishlist_btn end-15 top-15 position-absolute  bg-white rounded-circle" onclick="removeFromCart('{{id}}')">
+            <img src="./assets/img/trash.svg" width="14" height="14" alt="trash-icon">
+        </button>
+    </div>
+</div>

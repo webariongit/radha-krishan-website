@@ -1,0 +1,43 @@
+
+    RewriteEngine On
+    # RewriteCond %{HTTP_HOST} ^www.firsttoy.co.in$ [NC]
+    # RewriteRule ^(.*)$ https://firsttoy.co.in/$1 [L,R=301]
+  
+    # Redirect requests matching ^blog/(.*)$ to blog-details.html
+    # RewriteRule ^blog/(.*)$ blog-details.html [L]
+    
+    # Redirect requests matching ^content/(.*)$ to content.html
+    RewriteRule ^content/(.*)$ content.php [L]
+    
+    # Redirect requests matching ^product/(.*)$ to product-detail.html
+    # RewriteRule ^product/(.*)$ product-detail.html [L]
+
+    # Redirect "/filename.php" to "/filename"
+    # RewriteCond %{REQUEST_FILENAME} !-d
+    # RewriteCond %{REQUEST_FILENAME}\.php -f
+    # RewriteRule ^(.*)$ $1 [L]
+
+    # # Redirect "/foldername/filename.php" to "/foldername/filename"
+    # RewriteCond %{REQUEST_FILENAME} !-d
+    # RewriteCond %{REQUEST_FILENAME}\.php -f
+    # RewriteRule ^(.*)/$ $1 [L]
+
+    # Rewrite URLs without .php extension to their corresponding PHP files
+    RewriteCond %{REQUEST_FILENAME}.php -f
+    RewriteRule ^([^\.]+)$ $1.php [NC,L]
+
+    # Handle query parameters
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^([^\.]+)$ $1.php [NC,L]
+
+    # If the above rule doesn't match, handle query parameters
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^([^\.]+)$ index.php?url=$1 [QSA,L]
+    
+    # Redirect all requests to non-existing files or directories to 404.html
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ 404.html [L]
+  

@@ -1,0 +1,35 @@
+<div class="swiper-slide">
+    <div class="product-card overflow-hidden rounded-4 bg-white ">
+        <div class="product_image position-relative">
+            <div class="swiper productImageSwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="{{image}}" alt="product-image" width=""
+                            height="">
+                    </div>
+                </div>
+            </div>
+            <button
+                onclick="toggleWishList({{id}}, {{variation_id}})"
+                class="wishlist_btn end-15 top-15 position-absolute  bg-white rounded-circle">
+                <img src="./assets/img/heart.svg" width="" height="" alt="wishlist-icon" class="wishlist-product-{{id}}"
+                >
+            </button>
+            <div class="bg-orange rounded-2 px-2 py-1 position-absolute z-2  top-15 start-15">
+                <span class="text-white m-sbd product_label_text">Best Seller</span>
+            </div>
+        </div>
+        <a href="./product?product_id={{id}}" class="d-flex flex-column p-14">
+            <h2 class="product_title m-sbd text-black text-start">{{productname}}</h2>
+            <span class="product_text m-reg text-start text-grey ellipsis">
+                {{description}}
+            </span>
+            <br>
+            <p class="product_discount_text mb-0">
+                <span class="text-grey m-reg ">
+                    <b class="m-bd ">Product Code:</b> {{productcode}}
+                </span>
+            </p>
+        </a>
+    </div>
+</div>

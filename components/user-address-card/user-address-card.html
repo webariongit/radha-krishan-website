@@ -1,0 +1,35 @@
+<div class="mb-4 border-grey rounded-3 p-3 bg-white">
+    <div class="d-flex flex-row align-items-center justify-content-between flex-wrap">
+        <div class="col-6">
+            <span class="m-bd font-18 text-black">{{type}}</span>
+        </div>
+        <div class="col-6 justify-content-end align-items-center d-flex gap-3">
+            <button class="h-34 border-grey bg-white px-3 rounded-2 text-black text-noWrap" onclick="openEditAddressModel('{{id}}')">
+                Edit Address
+            </button>
+            <button class="rounded-circle border-grey bg-white trash-btn p-1" onclick="openDeleteAddressModal('{{id}}')">
+                <img src="./assets/img/trash.svg" width="" height=""
+                    style="width: 18px;height: 18px;" alt="trash">
+            </button>
+        </div>
+
+    </div>
+    <p class="m-bd font-18 text-black">{{name}}</p>
+    <p class="font-14 text-grey m-reg">{{line_1}}, {{line_2}}</p>
+    <p class="font-14 text-grey m-reg">{{landmark}}</p>
+    <p class="font-14 text-grey m-reg">{{city}}, {{state}}</p>
+    <p class="font-14 text-grey m-reg">{{country}}, {{pincode}}</p>
+    <p class="d-flex flex-row align-items-center gap-2">
+        <span>
+            <i class="font-14 fa fa-phone  text-green"></i>
+        </span>
+        <span class="font-14 text-black m-reg">{{phone_no}}, Alternate Number: {{alternate_phone_no}}</span>
+    </p>
+    <!-- <p class="d-flex flex-row align-items-center gap-2">
+        <span>
+            <i class="font-14 fa fa-phone text-green"></i>
+        </span>
+        <span class="font-14 text-black m-reg"></span>
+    </p> -->
+</div>
+
