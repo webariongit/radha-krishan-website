@@ -494,7 +494,7 @@ function initNavigationMenu()
 
                     ComponentGenerator.populateComponent({ component: 'header-navigation-menu', data: response.data})
                     .then(htmlContent => {
-                      
+                        // console.log(`htmlContent==>`,htmlContent);
                       replacementTemplate.innerHTML = htmlContent;
                         
                         // Replace the template tag with the HTML content
@@ -558,7 +558,7 @@ function initNavMegaMenu() {
         if (nav?.filter_values?.length > 0) {
            
             let navitem =  `<div class="col">
-            <h3 class="font-14 m-med text-black mb-1 ">SHOP BY ${nav.filter_name}</h3>
+            <h3 class="font-14 m-med text-black mb-1">SHOP BY ${nav.filter_name}</h3>
             <div class="horizontal_line"></div>
             <ul class="pl-0">`;
             let navFilter = '';

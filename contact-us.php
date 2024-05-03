@@ -41,28 +41,28 @@ $_PAGE_NAME = "Contact Us"
                 <div class="col-lg-3 col-md-5 col-12">
                     <h3 class="m-bd text-black font-20 mb-4">Contact Info</h3>
                     <div class="border-grey rounded-4 p-4 d-flex gap-4 align-items-center mb-3 ">
-                        <div class="wh-54 rounded-circle border-grey d-flex justify-content-center align-items-center">
+                        <div class="wh-54 rounded-circle border-grey d-flex justify-content-center align-items-center col-6">
                             <i class="fas fa-building text-green font-20"></i>
                         </div>
-                        <h3 class="mb-0 text-card font-16 m-med" id="contact_business_name"></h3>
+                        <h3 class="mb-0 text-card font-16 m-med flex-1" id="contact_business_name"></h3>
                     </div>
                     <div class="border-grey rounded-4 p-4 d-flex gap-4 align-items-center mb-3 ">
-                        <div class="wh-54 rounded-circle border-grey d-flex justify-content-center align-items-center">
+                        <div class="wh-54 rounded-circle border-grey d-flex justify-content-center align-items-center col-6">
                             <i class="fa fa-map text-green font-20"></i>
                         </div>
-                        <h3 class="mb-0 text-card font-16 m-med" id="contact_comp_address"></h3>
+                        <h3 class="mb-0 text-card font-16 m-med flex-1" id="contact_comp_address"></h3>
                     </div>
                     <div class="border-grey rounded-4 p-4 d-flex gap-4 align-items-center mb-3 ">
-                        <div class="wh-54 rounded-circle border-grey d-flex justify-content-center align-items-center">
+                        <div class="wh-54 rounded-circle border-grey d-flex justify-content-center align-items-center col-6">
                             <i class="fa fa-phone text-green font-20"></i>
                         </div>
-                        <h3 class="mb-0 text-card font-16 m-med" id="contact_comp_mobile"></h3>
+                        <h3 class="mb-0 text-card font-16 m-med flex-1" id="contact_comp_mobile"></h3>
                     </div>
                     <div class="border-grey rounded-4 p-4 d-flex gap-4 align-items-center mb-3 ">
-                        <div class="wh-54 rounded-circle border-grey d-flex justify-content-center align-items-center">
+                        <div class="wh-54 rounded-circle border-grey d-flex justify-content-center align-items-center col-6">
                             <i class="fa fa-envelope text-green font-20"></i>
                         </div>
-                        <h3 class="mb-0 text-card font-16 m-med" id="contact_comp_email"></h3>
+                        <h3 class="mb-0 text-card font-16 m-med flex-1" id="contact_comp_email"></h3>
                     </div>
                     
                 </div>
@@ -73,24 +73,24 @@ $_PAGE_NAME = "Contact Us"
                     <div class="d-flex flex-column mt-10 pt-1 gap-20">
                         <div class="row gy-3">
                             <div class="col-md col-12 d-flex flex-column">
-                                <label for="FirstName" class="font-14 text-grey5 m-med">First Name</label>
+                                <label for="FirstName" class="font-14 text-grey5 m-med">First Name <span class="text-danger font-14">*</span></label>
                                 <input type="text" name="first_name" id="first_name"
                                     class="w-100 border-grey rounded-2 h-40 mt-10">
                             </div>
                             <div class="col-md col-12 d-flex flex-column">
-                                <label for="LastName" class="font-14 text-grey5 m-med">Last Name</label>
+                                <label for="LastName" class="font-14 text-grey5 m-med">Last Name <span class="text-danger font-14">*</span></label>
                                 <input type="text" name="last_name" id="last_name"
                                     class="w-100 border-grey rounded-2 h-40 mt-10">
                             </div>
                         </div>
                         <div class="row gy-3">
                             <div class="col-md col-12 d-flex flex-column">
-                                <label for="email" class="font-14 text-grey5 m-med">Email</label>
+                                <label for="email" class="font-14 text-grey5 m-med">Email <span class="text-danger font-14">*</span></label>
                                 <input type="email" id="email" name="email"
                                     class="w-100 border-grey rounded-2 h-40 mt-10">
                             </div>
                             <div class="col-md col-12 d-flex flex-column">
-                                <label for="Country" class="font-14 text-grey5 m-med">Phone Number</label>
+                                <label for="Country" class="font-14 text-grey5 m-med">Phone Number <span class="text-danger font-14">*</span></label>
                                 <div class="d-flex flex-row gap-20 justify-content-between mt-10 col-12">
                                     <!-- <select name="PhoneNumber" id="PhoneNumber"
                                         class="border-grey rounded-2 h-40  col-lg-2 col-md-3 col-2">
@@ -110,7 +110,8 @@ $_PAGE_NAME = "Contact Us"
                         </div> -->
                         <div class="row">
                             <div class="col d-flex flex-column">
-                                <label for="Message" class="font-14 text-grey5 m-med">Message</label>
+                                <label for="Message" class="font-14 text-grey5 m-med">Message <span class="text-danger font-14">*</span>
+                            </label>
                                 <textarea name="message" id="message" class="w-100 border-grey rounded-2  mt-10 resize-none"
                                     cols="10" rows="5"></textarea>
                             </div>

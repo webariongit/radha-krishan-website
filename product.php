@@ -36,7 +36,7 @@ $_PAGE_NAME = "Floret Cutout Gold Band"
 
     <section class="detail_wrapper">
         <div class="container">
-            <div class="d-flex flex-row gap-5 flex-wrap  align-items-start col-12">
+            <div class="d-flex flex-row gap-5 flex-wrap  align-items-start col-12 pb-5 ">
                  <!-- Product Images START -->
                 <?php include("./templates/product-images.php"); ?>
                 <!-- Product Images END -->
@@ -51,7 +51,7 @@ $_PAGE_NAME = "Floret Cutout Gold Band"
                         <!-- <p class="text-green filterBy_text mb-3 m-sbd">Buy 2 and get extra 5% off. Use code: RADHASPL5</p> -->
                         <span class="text-grey4 product_text m-reg mb-3 ellipsis" id="productShortDescription"></span>
                         <div class="row gap-lg-0 gap-3">
-                            <div class="col col-12">
+                            <div class="col">
                                 <!-- <div class="col d-flex flex-column">
                                     <label for="select_size" class="product_text m-sbd text-black mb-11">Select
                                         Size</label>
@@ -59,10 +59,10 @@ $_PAGE_NAME = "Floret Cutout Gold Band"
                                         <option value="instock">12 ( IN - 12 ) - in stock!</option>
                                     </select>
                                 </div> -->
-                                <div class="col d-flex flex-column mt-3 pt-1">
+                                <div class="col d-flex flex-column">
                                     <label for="select_size"
                                         class="product_text m-sbd text-black mb-11">Customization</label>
-                                        <div id="customization_btns">
+                                        <div id="customization_btns" >
 
                                         </div>
                                    
@@ -72,11 +72,9 @@ $_PAGE_NAME = "Floret Cutout Gold Band"
                                 <div class="col d-flex flex-column position-relative">
                                     <label for="select_size" class="product_text m-sbd text-black mb-11">Check Delivery Details</label>
                                     <form id="pincode-checker-form">
-                                    <span class="position-absolute end-20  top-50">
-                                            <img src="./assets/img/pinloc.svg" alt="location-icon" width="" height="">
-                                        </span>
+                                    
                                         <input id="pincode" type="text" class="detail_select border-green m-bd text-black rounded-2">
-                                        <button type="submit" class="checkDeliveryBtn  align-items-center justify-content-center gap-2 text-center border-green rounded-2" id="delivery-search-btn">Check</button>
+                                        <button type="submit" class="checkDeliveryBtn  align-items-center justify-content-center gap-2 text-center border-green rounded-2 text-white" id="delivery-search-btn">Check</button>
                                        
                                     </form>
                                 </div>
@@ -97,7 +95,7 @@ $_PAGE_NAME = "Floret Cutout Gold Band"
                                             </defs>
                                         </svg>
                                     </div>
-                                    <div>
+                                    <div class="flex-1">
                                         <h2 class="m-bd text-green font-14 mb-1" id="expt-delivery"></h2>
                                         <!-- <p class="font-12 text-grey mb-0">Order in next 21 Hrs 6 Mins <a href=""
                                                 class="text-blue">T&C</a></p> -->
@@ -119,8 +117,8 @@ $_PAGE_NAME = "Floret Cutout Gold Band"
                                 <button class="hw-50 rounded-circle border-0 bg-lightgreen" id="decreaseProductQty">
                                     <i class="fa fa-minus text-green font-16"></i>
                                 </button>
-                                <input type="text" value="1" name="product_count" id="product-cart-quantity"
-                                    class="productCountSelect rounded-2">
+                                <input type="text" value="1" name="product_count"  id="product-cart-quantity"
+                                    class="productCountSelect rounded-2 text-center">
                                 <button class="hw-50 rounded-circle text-center border-0 bg-lightgreen" id="increaseProductQty">
                                     <i class="fa fa-plus text-green font-16"></i>
                                 </button>
@@ -693,7 +691,7 @@ $_PAGE_NAME = "Floret Cutout Gold Band"
                                 const customization_btns = document.getElementById('customization_btns');
 
                                 // Insert the HTML content into the table
-                                customization_btns.insertAdjacentHTML('beforeend',  `<button onclick="updateAttributeClass()" class="detail_select border-grey m-med text-grey4 rounded-2 bg-white" type="button" data-bs-toggle="modal" data-bs-target="#customizeBackdrop">
+                                customization_btns.insertAdjacentHTML('beforeend',  `<button onclick="updateAttributeClass()" class="detail_select col-12 border-gray m-med text-grey4 rounded-2 bg-white" type="button" data-bs-toggle="modal" data-bs-target="#customizeBackdrop">
                                     Choose Variation
                                     </button>`);  
 
