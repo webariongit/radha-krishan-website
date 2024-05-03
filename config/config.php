@@ -1,1 +1,1 @@
-<?php $BASE_URL = "http://localhost/jewels/"; ?>
+<?php $BASE_URL = "http://localhost/radha-krishan-website/"; ?>
