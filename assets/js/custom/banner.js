@@ -12,7 +12,7 @@ function initBanners(response)
                 let bannerSlider = ComponentGenerator.replacePlaceholders(` 
                     <div class="swiper-slide">
                         <div class="banner-slider">
-                            <a href="products.html?category={{category_id}}">
+                            <a href="products.php?category={{category_id}}">
                                 <img src="{{image}}" alt="">
                             </a>
                         </div>
@@ -82,13 +82,15 @@ function initBanners(response)
                 banner.created_at = DateTime.formatDate(banner.created_at);
                 let bannerSlider = ComponentGenerator.replacePlaceholders(` 
                                         <div class="col">
-                                        <div class="position-relative collectionCategories overflow-hidden rounded-4">
-                                            <img src="{{image}}" alt="product-image" width="" height=""
-                                                class="rounded-4">
-                                            <div class="position-absolute bottom-0 w-100 bottom-card-title">
-                                                <span class="text-white m-reg">{{category}}</span>
+                                        <a href="products.php?category={{id}}">
+                                            <div class="position-relative collectionCategories overflow-hidden rounded-4">
+                                                <img src="{{image}}" alt="product-image" width="" height=""
+                                                    class="rounded-4">
+                                                <div class="position-absolute bottom-0 w-100 bottom-card-title">
+                                                    <span class="text-white m-reg">{{category}}</span>
+                                                </div>
                                             </div>
-                                        </div>
+                                        </a>
                                     </div>`, banner);
                         document.querySelector('#categoryImagesWrapper').innerHTML += bannerSlider;
                     return banner;
@@ -99,6 +101,7 @@ function initBanners(response)
         }
     }
 
+    
 
 function initProductSlider(response, data) 
 {

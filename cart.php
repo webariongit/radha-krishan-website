@@ -45,7 +45,7 @@ $_PAGE_NAME = "Cart"
     </section>
 
     <div class="modal fade" id="applycoupon" tabindex="-1" aria-labelledby="applycouponLabel" aria-hidden="true">
-    <div class="modal-dialog   modal-dialog-centered applycoupon_width">
+        <div class="modal-dialog   modal-dialog-centered applycoupon_width">
             <div class="modal-content px-md-4 px-2 rounded-5 pb-4">
                 <div class="modal-header border-0 pb-0">
                     <h3 class="font-26 text-black text-center m-bd flex-1">Apply Coupon</h3>
@@ -55,8 +55,8 @@ $_PAGE_NAME = "Cart"
                     <div class="mt-20 mx-auto position-relative" style="width: 100%;">
 
                         <input type="text" name="" placeholder="Enter Coupon Code"
-                            class="px-2 py-2 w-100 rounded pincode-input" id="">
-                        <button type="button"
+                            class="px-2 py-2 w-100 rounded pincode-input" id="custom-coupon">
+                        <button type="button" id="apply-custom-coupon-btn"
                             class="border-0 appy_btn_inside d-flex justify-content-center rounded-2  pincode-input position-absolute align-items-center">
                             <span class="text-lightgreen1 ">
                                 Apply
@@ -67,47 +67,10 @@ $_PAGE_NAME = "Cart"
                         Coupons
                     </p>
                     <div class="bg-gray2 p-3 rounded-3 overflow-hidden h-335 h-250">
-                        <div class="overflow-auto gap-3 flex-column d-flex h-100">
-                            <div class="d-flex flex-row align-items-center p-10 rounded-2 bg-white gap-3">
-                                <div class="wh-70">
-                                    <img src="./assets/img/box.webp" class="w-100 h-100" alt="">
-                                </div>
-                                <div class="flex-1">
-                                    <div class="w-100 d-flex flex-row justify-content-between align-items-center ">
-                                        <div class="d-flex flex-column ">
-                                            <h3 class="text-grey font-14 mb-1 m-bd">PERFECT3</h3>
-                                            <p class="font-14 m-reg mb-0">Flat 3% Off on Loose Solitaires</p>
-                                        </div>
-                                        <button type="button"
-                                            class="border-0 appy_btn_inside d-flex justify-content-center rounded-2  pincode-input align-items-center">
-                                            <span class="text-lightgreen1 ">
-                                                Apply
-                                            </span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="d-flex flex-row align-items-center p-10 rounded-2 bg-white gap-3">
-                                <div class="wh-70">
-                                    <img src="./assets/img/box.webp" class="w-100 h-100" alt="">
-                                </div>
-                                <div class="flex-1">
-                                    <div class="w-100 d-flex flex-row justify-content-between align-items-center ">
-                                        <div class="d-flex flex-column ">
-                                            <h3 class="text-grey font-14 mb-1 m-bd">PERFECT3</h3>
-                                            <p class="font-14 m-reg mb-0">Flat 3% Off on Loose Solitaires</p>
-                                        </div>
-                                        <button type="button"
-                                            class="border-0 appy_btn_inside d-flex justify-content-center rounded-2  pincode-input align-items-center">
-                                            <span class="text-lightgreen1 ">
-                                                Apply
-                                            </span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="overflow-auto gap-3 flex-column d-flex h-100" id="coupon-list-area">
                             
-                            <div class="d-flex flex-row align-items-center p-10 rounded-2 bg-white gap-3">
+                            
+                            <!-- <div class="d-flex flex-row align-items-center p-10 rounded-2 bg-white gap-3">
                                 <div class="wh-70">
                                     <img src="./assets/img/box.webp" class="w-100 h-100" alt="">
                                 </div>
@@ -125,7 +88,7 @@ $_PAGE_NAME = "Cart"
                                         </button>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -378,6 +341,73 @@ $_PAGE_NAME = "Cart"
             });
         }
 
+        function  initOfferListTable() {
+
+        APIFetcher.fetchData(`${API_BASE_URL}/user/coupon-list`, 'GET', '', localStorage.getItem(TOKEN_PREFIX+'token'))
+        .then(response => {
+            // Render HTML using the response data
+
+            console.log("cOUPON lIST",response)
+            if (response.status == 200)
+            response.data.forEach(coupan => {
+
+            
+            let applyButton = document.createElement('button');
+            applyButton.classList.add('btn');
+            applyButton.classList.add('apply-btn');
+            applyButton.classList.add('apply-coupon-list');
+            applyButton.innerText = 'Apply';
+            applyButton.value = coupan.coupan;
+            applyButton.setAttribute('id', `apply-coupon-${coupan.id}`)
+
+
+                let textEnd =   document.createElement('div');
+                textEnd.classList.add('text-end');
+                textEnd.appendChild(applyButton);
+
+                let card = `
+                <div class="d-flex flex-row align-items-center p-10 rounded-2 bg-white gap-3">
+                    <div class="wh-70">
+                        <img src="${response.base_url + coupan.image_thumb}" class="w-100 h-100" alt="">
+                    </div>
+                    <div class="flex-1">
+                        <div class="w-100 d-flex flex-row justify-content-between align-items-center ">
+                            <div class="d-flex flex-column ">
+                                <h3 class="text-grey font-14 mb-1 m-bd">${coupan.coupan}</h3>
+                                <p class="font-14 m-reg mb-0">${coupan.description}</p>
+                            </div>
+                            ${ textEnd.outerHTML}
+                        </div>
+                    </div>
+                </div>
+                `;
+                
+                        ;
+
+                document.getElementById('coupon-list-area').innerHTML +=  card;
+
+                
+
+            });
+
+            let btns = document.getElementsByClassName('apply-coupon-list');
+
+            [...btns].forEach(e => {
+                e.addEventListener('click', () => {
+                    console.log("hello")
+                    this.chooseCoupon(e.value);
+                })
+            })
+
+            
+
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+        }
+
+
         function initPincodeChecker() {
 
             let myPincode = localStorage.getItem(TOKEN_PREFIX+'pincode');
@@ -420,6 +450,51 @@ $_PAGE_NAME = "Cart"
             })
         }
 
+       function chooseCoupon(coupan){
+            console.log('dffv');
+            document.getElementById('custom-coupon').value = coupan;
+            // Perform your fetch call here
+            APIFetcher.fetchData(`${API_BASE_URL}/user/apply-coupon`, 'POST', { coupan }, localStorage.getItem(TOKEN_PREFIX+'token'))
+                .then(response => {
+                    // Handle the response as needed
+                    console.log(response);
+                    if (response.status == 400) {
+                        document.getElementById('coupon_msg').innerHTML = `<label class="text-danger">${response.error}</label>`;
+                                        } else {
+                                            document.getElementById('coupon_msg').innerHTML = `<label class="text-success">${response.message}</label>`;
+                                        
+                                        }
+                                    setTimeout(() => {
+                                        this.couponModal.toggle();
+                                    }, 2000);
+                                    getCartDetails()
+                                })
+                                .catch(error => {
+                                    console.error('Error:', error);
+                                });
+            }
+
+            function  removeCoupon(){
+                console.log('dffv');
+            
+                // Perform your fetch call here
+                APIFetcher.fetchData(`${API_BASE_URL}/user/coupon-remove`, 'GET',  '', localStorage.getItem(TOKEN_PREFIX+'token'))
+                    .then(response => {
+                        // Handle the response as needed
+                        console.log(response);
+                        if (response.status == 400) {
+                            document.getElementById('coupon_msg').innerHTML = `<label class="text-danger">${response.error}</label>`;
+                        } else {
+                            document.getElementById('coupon_msg').innerHTML = `<label class="text-success">${response.message}</label>`;
+                        }
+                        getCartDetails()
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            }
+
+        initOfferListTable();
         getCartDetails();
         
     </script>

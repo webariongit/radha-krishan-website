@@ -1290,6 +1290,8 @@ select[id="Country"] {
 
 .submenu {
     display: none;
+    width: 100% !important;
+    max-width: 100% !important;
 }
 
 .offer-menu:hover>.offersubmenu {
@@ -1492,4 +1494,57 @@ select[id="Country"] {
     top: 5px;
     color: red;
     cursor: pointer;
+}
+
+.no-order{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 300px;
+}
+
+.main-btn{
+    padding: 10px 40px;
+    background-color: #B5E7A3;
+    color: #214D23;
+    font-size: 14px;
+    width: 100%;
+    max-width: 400px;
+}
+
+.address-type{
+    display: inline-flex;
+    gap: 4px;
+    margin-right: 10px;
+}
+
+.chart-modal .modal-title{
+    font-size: 20px;
+    font-weight: 700;
+    color: #000;
+}
+
+.chart-modal .modal-header{
+    position: relative;
+    justify-content: center;
+}
+
+.chart-modal .modal-header .btn-close{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.cart-title h3, .payment-method h3{
+    font-size: 16px;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 20px;
+}
+
+.payment-method ul li{
+    padding-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
 }

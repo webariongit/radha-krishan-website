@@ -144,8 +144,7 @@ $_PAGE_NAME = "Floret Cutout Gold Band"
                                 <span class="font-18 text-white m-med ">Add to Cart</span>
                             </button>
 
-                            <button
-                                id="add-wishlist-btn"
+                            <button id="add-wishlist-btn"
                                 class="addCartBtn d-flex align-items-center justify-content-center gap-2 text-center border-green rounded-2 d-none">
                                 <span>
                                     <i class="fa fa-heart text-white font-24"></i>
@@ -634,7 +633,7 @@ $_PAGE_NAME = "Floret Cutout Gold Band"
                 },
             },
         });
-
+       
         const url = new URL(window.location.href);
         // Get the value of the 'order_id' parameter
         const product_id =  url.searchParams.get('product_id');
@@ -1246,7 +1245,7 @@ $_PAGE_NAME = "Floret Cutout Gold Band"
         // Insert the HTML content into the table
         table.insertAdjacentHTML('beforeend', price_breakup);  
 
-        document.getElementById('total_product_price_with_gst').innerText = current_price.total_product_price_with_gst;
+        document.getElementById('total_product_price_with_gst').innerText = '₹ ' + current_price.total_product_price_with_gst;
     }
 
 

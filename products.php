@@ -346,8 +346,8 @@
                             <span class="text-grey result_text m-bd" id="filter-bage-container"></span>
                         </div>
 
-                        <div class="row  gutter-y">
-                            <div class="col-xl-4 col-lg-6 col-12 ">
+                        <div class="row  gutter-y" id="custom-product-card-container">
+                            <!-- <div class="col-xl-4 col-lg-6 col-12 ">
                                 <div class="product-card overflow-hidden rounded-4 bg-white ">
                                     <div class="product_image position-relative">
                                         <div class="swiper productImageSwiper">
@@ -563,13 +563,13 @@
                                         </p>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
 
 
                         </div>
                     </div>
                     <nav aria-label="Page navigation example" class="mt-5 pt-2 d-flex justify-content-center">
-                        <ul class="pagination gap-1">
+                        <ul id="pagination" class="pagination gap-1">
                             <li class="page-item">
                                 <a class="page-link" href="#" aria-label="Previous">
                                     <span aria-hidden="true">&laquo;</span>
@@ -595,9 +595,236 @@
         <!-- FOOTER END -->
 
     <script>
+        var pageNo = 1;
+        var sort_by = "DESC";
         const url = new URL(window.location.href);
         const filterData = [];
         const category_id =  url.searchParams.get('category');
+        const keyword =  url.searchParams.get('keyword');
+
+        function initFilteredProductsList() {
+            console.log("keyword", keyword, typeof keyword ,  keyword !== 'null')
+            if (typeof keyword === 'string' && keyword != 'null')  {
+                console.log('initFilteredProductsListBySearch')
+                initFilteredProductsListBySearch();
+            } else {
+                console.log('initFilteredProductsList')
+                initFilteredProductsListByFilter();
+            }
+        }
+
+        function initFilteredProductsListBySearch() {
+            APIFetcher.fetchData(`${API_BASE_URL}/search?keyword=${keyword}&sort=${sort_by}&page=${pageNo}`, 'GET', {}, localStorage.getItem('ft-token'))
+            .then(response => {
+                // Render HTML using the response data
+
+                // console.log(response)
+                if(response && response.data){
+                    // document.getElementById('filter-heading').innerText = response.description;
+
+                    if (response.data.next_page_url == null) {
+                        document.getElementById('pagination').classList.add('d-none');
+                    } else {
+                        document.getElementById('pagination').classList.remove('d-none');
+                    }
+
+
+
+                    // document.getElementById('result-count').innerText = `(${response.data.total} Results)`;
+                    initProductListing(response.base_url, response.data.data) 
+                } else {
+                    document.querySelector('#custom-product-card-container').innerHTML =  ` <div class="order-complete-content">
+                    <h4>No product found releted to this keyword.</h4>
+                    <p id="status_message"></p>
+                    <div id="order_detail_btn"></div>
+                    </div>`;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+
+        function initFilteredProductsListByFilter() {
+            // let filter_name = filterPageUrl.searchParams.get('filter') ? filterPageUrl.searchParams.get('filter').split(",") : [];
+            // let filter_value = filterPageUrl.searchParams.get('value') ? filterPageUrl.searchParams.get('value').split(",") : [];
+            // // console.log(filter_name, filter_value);
+
+            // // Wrap each element in single quotes
+            // const quotedFilterName = filter_name.map(name => `'${name}'`).join(',');
+            // const quotedFilterValue = filter_value.map(value => `'${value}'`).join(',');
+            let url = new URL(window.location.href);
+            const searchParams = Array.from(url.searchParams);
+            let filterData = [];
+            // Now you can iterate through the search parameters
+            searchParams.forEach(([key, value]) => {
+                if (key != 'category' && key != 'brand' && key != 'offer') {
+                    filterData.push({ 'filter_name' :key, 'filter_value' : value.split(',')});
+                }
+            });
+
+            console.log(filterData);
+
+            const filterNames = filterData.map(obj => "'"+obj.filter_name+"'").join(',');
+            const filterValues = filterData.map(obj => obj.filter_value);
+
+            const stringWithSingleQuotes =  filterValues.map(value => {
+                let otpt = [];
+                    value.map(v =>{
+                        console.log('v', `'${v}'`);
+                        otpt.push(`'${v}'`) 
+                        });
+                return otpt.join(",");
+                
+            }).join(',');
+        
+
+            let playload = {
+                category_id,
+                filter_name: filterNames,
+                filter_value: stringWithSingleQuotes,
+                page: pageNo,
+                sort_by: sort_by,
+            }
+
+            // if(offerId){
+            //     playload.offer_id = offerId
+            // }
+
+            // if(barndId){
+            //     playload.brand_id = barndId
+            // }
+
+            console.log("Payload", playload);
+
+            if(playload.category_id == null)
+                delete playload.category_id
+
+                let loadMoreBtn = document.querySelector('#load-more-btn');
+                loadMoreBtn.setAttribute('disabled', true)
+                loadMoreBtn.innerHTML = `<div class="spinner-border text-light" role="status"><span class="sr-only"></span></div>`;
+
+
+            APIFetcher.fetchData(`${API_BASE_URL}/filtered-products`, 'POST', playload, localStorage.getItem('ft-token'))
+            .then(response => {
+                // Render HTML using the response data
+
+                // console.log(response)
+
+                loadMoreBtn.innerHTML = 'Load More...';
+                loadMoreBtn.removeAttribute("disabled");
+            
+            if(response.data && response.data.data && response.data.data.length > 0) {
+                    document.getElementById('filter-heading').innerText = response.description;
+
+                    if (response.data.next_page_url == null) {
+                        document.getElementById('pagination').classList.add('d-none');
+                    } else {
+                        document.getElementById('pagination').classList.remove('d-none');
+                    }
+
+
+
+                    document.getElementById('result-count').innerText = `(${response.data.total} Results)`;
+                    
+                    initProductListing(response.base_url, response.data.data) 
+            } else {
+                    document.querySelector('#custom-product-card-container').innerHTML =  ` <div class="order-complete-content">
+                    <h4>No product found releted to this keyword.</h4>
+                    <p id="status_message"></p>
+                    <div id="order_detail_btn"></div>
+                    </div>`;
+            }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+
+        function initProductListing(base_url, productList) 
+            {
+
+                try {
+                    const customCode = document.querySelector('#custom-product-card-container');
+                if (customCode) {
+                    
+                    // filter eligible products
+                productList = productList.filter(p => (p?.material_attribute !== undefined && p?.material_attribute[0]?.variations?.length > 0 && p?.material_attribute?.length > 0));
+                
+                
+                //    document.getElementById('result-count').innerText = `(${productList.length} Results)`;
+                console.log("productList", productList)
+                productList.map(product => {
+                        product.image_thumb = base_url + product.image_thumb
+                        product.image = base_url + product.image
+                        product.created_at = DateTime.formatDate(product.created_at);
+
+                        let reviews = +product.reviews;
+                        // console.log('review', reviews)
+                        product.reviews = '';
+                        while (reviews > 0) {
+                            product.reviews += ' <img src="images/star.svg" alt="">';
+                            reviews--;
+                        }
+                        
+                        if (product.material_attribute) {
+                            let VARIATIONS =  product.material_attribute.find(e => e.attribute_class == "VARIATIONS"); 
+                            
+                        
+                            if (VARIATIONS && VARIATIONS.hasOwnProperty('variations')) {
+                            
+                                    
+                                    // console.log(product, VARIATIONS.variations);
+                                
+                                        product.total_offer_price = VARIATIONS.variations[0].value.TOTAL_OFFER_PRICE;
+                                        product.total_price = VARIATIONS.variations[0].value.TOTAL_PRICE;
+                                        product.out_of_stock = VARIATIONS.variations[0].value.STOCK > 0 ? 'd-none' : '';
+                                        product.variation_id = VARIATIONS.variations[0].id;
+                                        const { STOCK, TOTAL_PRICE, TOTAL_OFFER_PRICE, ...specifications } = VARIATIONS.variations[0].value;
+
+                                        product.specifications = '';
+                                        for (const [key, value] of Object.entries(specifications)) {
+                                            // console.log(`${key}: ${value}`);
+                                            product.specifications += `<span class="specifications">${key}: ${value}</span>`;
+                                        }
+
+                                        
+                                
+                            } 
+                            // product?.isNotified = notifyMeListing?.find(nml => nml.product_id == product.id && nml.variation_id == product.variation_id );
+                            // console.log('isNotified', product.isNotified)
+
+                            // if (product.isNotified) {
+                            //     product.isNotified_id = product.isNotified.id;
+                            //     product.isDontNotified = "d-none";
+                            //     product.isNotified = "";
+
+                            // } else {
+                            //     if (product.out_of_stock == 'd-none')
+                            //         product.isDontNotified = "d-none";
+
+                            //     product.isNotified =  "d-none";
+                            // }
+                        }
+                        
+                        return product;
+                        
+                    } );
+                    ComponentGenerator.populateComponent({ component: 'filterd-product-card', data: productList})
+                    .then(css => {
+                        if (pageNo == 1){
+                            document.querySelector('#custom-product-card-container').innerHTML = css;
+                        } else {
+                            document.querySelector('#custom-product-card-container').innerHTML += css;
+                        }
+                    })
+                } 
+                } catch(e) {
+                    console.warn(e)
+                }
+                
+            }
+
         function initFilterBox() {
             // Get the value of the 'order_id' parameter
             var category_id =  url.searchParams.get('category');
@@ -771,6 +998,8 @@
         });
 
         initFilterBox();
+        initFilteredProductsList() ;
+
     </script>
 </body>
 

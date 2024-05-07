@@ -1,5 +1,6 @@
 <div class="sticky top-5 w-450">
                     <div class="col">
+                        <?php if ($_PAGE_NAME == "Cart") { ?>
                         <div
                             class="col-12 apply_coupon_card  rounded-3 d-flex align-items-center justify-content-between px-3 mb-20">
                             <p class="mb-0 d-flex align-items-center  gap-4">
@@ -12,6 +13,9 @@
                                 class="w-30 rounded-circle bg-white d-flex align-items-center justify-content-center border-0">
                                 <i class="fa fa-angle-right text-green font-14"></i>
                             </button>
+                            <!-- <button type="button"  class="w-30 rounded-circle bg-white d-flex align-items-center justify-content-center border-0 remove-coupon" id="remove-coupon-btn" onclick="removeCoupon()">
+                                <i class="fa fa-xmark text-green font-14"></i>
+                            </button> -->
                         </div>
                         <div
                             class="col-12 pincode-card bg-white  rounded-3 d-flex align-items-center justify-content-between px-3 mb-20">
@@ -27,6 +31,15 @@
                                 Change Pincode
                             </button>
                         </div>
+                        <?php } ?>
+                        <?php if ($_PAGE_NAME == "Checkout") { ?>
+                        <div class="cart-title">
+                            <h3>Order Summary</h3>
+                        </div>
+                        <div id="ordered-product">
+                            
+                        </div>
+                        <?php } ?>
                         <div class="d-flex col-12 justify-content-between align-items-center mb-3">
                             <p class="mb-0 font-14 m-med text-black">Subtotal</p>
                             <p class="mb-0 font-14 m-med text-black"><span id="total_price"></span></p>
@@ -34,7 +47,6 @@
                         <div class="d-flex col-12 justify-content-between align-items-center mb-3">
                             <p class="mb-0 font-14 m-med text-black">Cart Discount</p>
                             <p class="mb-0 font-12 m-reg text-green">- <span id="total_product_discount"></span></p>
-
                         </div>
                       
                         <div class="d-flex col-12 justify-content-between align-items-center mb-3">
@@ -48,15 +60,19 @@
 
                         </div>
                         <div class="d-flex col-12 justify-content-between align-items-center mb-4">
-                            <p class="mb-0 font-14 m-med text-black">Shipping</p>
+                            <p class="mb-0 font-14 m-med text-black">Shipping (Standard)</p>
                             <p class="mb-0 font-12 m-sbd text-red"><span  id="expected_delivery_charges"></span></p>
                         </div>
+                        <!-- <div class="d-flex flex-row justify-content-end  h-40 mb-3 col-12">
+                            <input type="text" class="px-10 border-grey col rounded-start" placeholder="Apply Coupon">
+                            <label class="sortby_text m-bd bg-green rounded-end text-white border-green">Apply</label>
+                        </div> -->
                         <div class="d-flex col-12 justify-content-between align-items-center mb-3">
                             <p class="mb-0 font-14 m-med text-black">GST </p>
                             <p class="mb-0 font-14 m-med text-black"><span id="applicable_gst"></span></p>
                         </div>
-                        <div class="d-flex col-12 justify-content-between align-items-center mt-2">
-                            <p class="mb-0 font-16 m-sbd text-black">Grand Total</p>
+                        <div class="d-flex col-12 justify-content-between align-items-center mt-2 mb-3">
+                            <p class="mb-0 font-16 m-sbd text-black">Total Cost</p>
                             <p class="mb-0 font-16 m-sbd text-black"><span id="total_cart_amount"></span></p>
                         </div>
                         <!-- <button
@@ -67,7 +83,7 @@
                         </button> -->
                         <?php if ($_PAGE_NAME == "Checkout") { ?>
                         <div class="payment-method">
-                            <h4>Payment Method</h4>
+                            <h3>Payment Method</h3>
                             <ul>
                                 <li><input type="radio" name="payment" value="cod" id="codPayment"><label for="codPayment"></label><span>Cash on Delivery</span></li>
                                 <li><input type="radio" name="payment" value="online" id="onlinePayment"><label for="onlinePayment" ></label><span>Online</span></li>
@@ -86,3 +102,4 @@
                         <?php } ?>
                     </div>
                 </div>
+                

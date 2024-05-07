@@ -35,7 +35,7 @@
                     </div>
                     <div class="col-9 col-md-4 col-lg-4">
                         <div class="col-12">
-                            <input type="text" placeholder="Search for Jewellery" class="searchForJewell col-12">
+                            <input type="text" id="searchKey" placeholder="Type jewellery name and then press enter" class="searchForJewell col-12">
                         </div>
                     </div>
                     <div class="col-12 col-md-5 col-lg-4 col-xl-3">
@@ -82,7 +82,7 @@
     <div class="bottom_header bg-white d-lg-block d-none">
         <div class="container" >
             <ul class="position-relative d-flex justify-content-center flex-row align-items-center position-relative gap-50 " id="menu-container">
-            <template id="header-navigation-menu"></template>
+                <template id="header-navigation-menu"></template>
                
                 <li class="py-header list-menu">
                     <a href="<?= $BASE_URL ; ?>blogs" class="nav-link">
@@ -227,3 +227,35 @@
         </div>
     </div>
 <!--- header models end --->
+<script>
+
+// Get references to the input field and button
+    const searchInput = document.getElementById('searchKey');
+
+    let urlCustom = new URL(window.location.href);
+    var searchInputValue =  urlCustom.searchParams.get('keyword');
+
+    searchInput.value = searchInputValue ? searchInputValue : '';
+
+   // Add a click event listener to the button
+
+   searchInput.addEventListener('keydown', function (event) {
+  //  event.preventDefault();
+    // console.log(event.key);
+    if (event.key === 'Enter') {
+      event.preventDefault();
+        // If the Enter key is pressed, perform the search
+        performSearch();
+    }
+  });
+
+  function performSearch() {
+    // Get the text from the input field
+    const keyword = searchInput.value;
+
+    // console.log(`${BASE_URL}products.html?keyword=${encodeURIComponent(keyword)}`);
+    // Redirect to products.html with the query parameter
+    window.location.href = `${BASE_URL}products?keyword=${encodeURIComponent(keyword)}`;
+  }
+
+</script>

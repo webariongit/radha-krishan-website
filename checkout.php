@@ -81,7 +81,9 @@ $_PAGE_NAME = "Checkout"
                         <input type="checkbox" name="shippingAddressCheckbox" id="shippingAddressCheckbox" class="shippingadd">
                         <label for="shippingAddressCheckbox" class="text-grey1 font-14  m-reg">Same as shipping address</label>
                     </div>
-                    <div class="row" id="billing-address-list"></div>
+                    <div class="mt-4" id="billing-address-list">
+
+                    </div>
                 </div>
                 <?php include("./templates/cart-summery.php"); ?>
                 
@@ -189,28 +191,30 @@ $_PAGE_NAME = "Checkout"
 
                     
 
-                    let card = `<div class="col-6">
-                                            <label for="shipping_address-{{id}}" class="address-box billing-address">
-                                                <div class="select-box">
-                                                    <input ${checked} type="radio" name="shipping_address" id="shipping_address-{{id}}" onchange="selectAddress('{{id}}', 'shipping_address')">
-                                                    <span></span>
-                                                </div>
-                                                <div>
-                                                    <h4 class="mb-0">{{type}}</h4>
-                                                    <p class="mb-0">
-                                                        {{name}}
+                    let card = `
+                    <div class="col-lg-6 col-12">
+                            <input  ${checked} type="radio" id="shipping_address-{{id}}" onchange="selectAddress('{{id}}', 'shipping_address')" name="address" class="radio-input" />
+                            <label for="shipping_address-{{id}}" class="address-label border-grey border-1 col-12 rounded-3 p-4 py-3 px-4 cursor-pointer"
+                                for="address1">
+                                
+                                <div class="d-flex flex-row justify-content-between align-items-center">
+                                    <h3 class="font-16 text-black mb-2">{{type}}</h3>
+                                    <button class="wishlist_btn border-grey bg-white rounded-circle">
+                                        <img src="./assets/img/trash.svg" width="14" height="14" alt="trash-icon">
+                                    </button>
+                                </div>
+                                <address class="font-14 text-grey m-reg mb-3">{{name}}
                                                         <br>{{line_1}} , {{line_2}}
                                                         <br> {{landmark}}
                                                         <br> {{city}} Pincode - {{pincode}} 
                                                         <br> {{state}} - {{country}}
                                                         <br>{{phone_no}}, {{alternate_phone_no}}
-                                                    </p>
-                                                    <div class="address-list-button">
-                                                        <button onclick="openEditAddressModel('{{id}}')"  type="button" class=" edit-btn short-button">Edit</button>
-                                                    </div>
-                                                </div>
-                                            </label>
-                                        </div>`;
+                                </address>
+                                <button class="border-grey rounded-1 py-1 px-auto text-center col-12" onclick="openEditAddressModel('{{id}}')">
+                                    <span class="font-14 text-black m-reg">Edit Address</span>
+                                </button>
+                            </label>
+                        </div>`;
 
                     document.querySelector('#shipping-address-list').innerHTML += ComponentGenerator.replacePlaceholders(card, element)
 
@@ -222,28 +226,31 @@ $_PAGE_NAME = "Checkout"
                         
                     }
 
-                    card = `<div class="col-6">
-                                            <label for="billing_address-{{id}}" class="address-box billing-address">
-                                                <div class="select-box">
-                                                    <input ${checked} type="radio" name="billing_address" id="billing_address-{{id}}" onchange="selectAddress('{{id}}', 'billing_address')">
-                                                    <span></span>
-                                                </div>
-                                                <div>
-                                                    <h4 class="mb-0">{{type}}</h4>
-                                                    <p class="mb-0">
-                                                        {{name}}
+                    card = `
+                    <div class="col-lg-6 col-12">
+                    <input  ${checked} type="radio" id="billing_address-{{id}}" onchange="selectAddress('{{id}}', 'billing_address')" name="address" class="radio-input" />
+                            <label for="billing_address-{{id}}" class="address-label border-grey border-1 col-12 rounded-3 p-4 py-3 px-4 cursor-pointer"
+                                for="address1">
+                                
+                                <div class="d-flex flex-row justify-content-between align-items-center">
+                                    <h3 class="font-16 text-black mb-2">{{type}}</h3>
+                                    <button class="wishlist_btn border-grey bg-white rounded-circle">
+                                        <img src="./assets/img/trash.svg" width="14" height="14" alt="trash-icon">
+                                    </button>
+                                </div>
+                                <address class="font-14 text-grey m-reg mb-3">{{name}}
                                                         <br>{{line_1}} , {{line_2}}
                                                         <br> {{landmark}}
                                                         <br> {{city}} Pincode - {{pincode}} 
                                                         <br> {{state}} - {{country}}
                                                         <br>{{phone_no}}, {{alternate_phone_no}}
-                                                    </p>
-                                                    <div class="address-list-button">
-                                                        <button onclick="openEditAddressModel('{{id}}')"  type="button" class=" edit-btn short-button">Edit</button>
-                                                    </div>
-                                                </div>
-                                            </label>
-                                        </div>`;
+                                </address>
+                                <button class="border-grey rounded-1 py-1 px-auto text-center col-12" onclick="openEditAddressModel('{{id}}')">
+                                    <span class="font-14 text-black m-reg">Edit Address</span>
+                                </button>
+                            </label>
+                        </div>
+                    `;
 
                     document.querySelector('#billing-address-list').innerHTML += ComponentGenerator.replacePlaceholders(card, element)
                 
@@ -722,8 +729,29 @@ $_PAGE_NAME = "Checkout"
         }
 
 
-    
-
+        function getCartProduct(){
+            let cart = localStorage.getItem(TOKEN_PREFIX+'cart');
+                cart = JSON.parse(cart);
+                console.log("cart",cart)
+                cart.forEach((el)=>{
+                    console.log("elele",el)
+                        let card = `<div class="d-flex flex-row align-items-start gap-3 mb-4">
+                                    <div class="rounded-4 border-green2 cart_image2 overflow-hidden">
+                                        <img src="${el?.product_details?.image_thumb}" alt="cart-image" width="" height="">
+                                    </div>
+                                    <div class="col">
+                                        <h3 class="font-14 m-med text-black mb-12 ">${el?.product_details?.productname}
+                                        </h3>
+            
+                                        <p class="text-grey2 font-12 m-sbd mb-3">${el?.product_details?.productcode}</p>
+                                        <h2 class="font-12 m-bd text-black mb-1 ">Quantity:&nbsp; ${el?.qty}</h2>
+                                        <h2 class="font-14 m-bd text-black  track-1"></h2>
+                                    </div>
+                                </div>`
+                        document.querySelector('#ordered-product').innerHTML += card
+                    })
+        }
+        getCartProduct();
 
 </script>
 </body>

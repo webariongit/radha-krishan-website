@@ -581,7 +581,7 @@ function initNavMegaMenu() {
                 // </span>
 
                 navFilter += ` <li class="mb-11">
-                <a href="${BASE_URL}products.html?${queryParams.join('&')}"
+                <a href="${BASE_URL}products.php?${queryParams.join('&')}"
                     class="d-flex flex-row align-items-center  gap-3">
                    
                     <span class="mb-0 font-14 text-grey ">${filter.key_name}</span>

@@ -1,0 +1,36 @@
+<div class="col-xl-4 col-lg-6 col-12 ">
+    <div class="product-card overflow-hidden rounded-4 bg-white ">
+        <div class="product_image position-relative">
+            <div class="swiper productImageSwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <a href="product?product_id={{id}}">
+                            <img src="{{image}}" alt="product-image"
+                            width="" height="">
+                        </a>
+                    </div>
+                </div>
+                <div class="swiper-button-next small_swiper_btn"></div>
+                <div class="swiper-button-prev small_swiper_btn"></div>
+            </div>
+            <button onclick="toggleWishList({id}, {variation_id})"
+                class="wishlist_btn end-15 top-15 wishlist-product-{{id}} position-absolute  bg-white rounded-circle">
+                <img src="./assets/img/heart.svg" width="" height="" alt="wishlist-icon">
+            </button>
+            <div
+                class="bg-green rounded-2 px-2 py-1 position-absolute z-2  top-15 start-15">
+                <span class="text-white m-sbd product_label_text">New</span>
+            </div>
+        </div>
+        <div class="d-flex flex-column p-14">
+            <h2 class="product_title m-sbd text-black text-start"> {{productname}}</h2>
+            <span class="product_text m-reg text-start text-grey ellipsis">{{description}}</span>
+            <br>
+            <p class="product_discount_text mb-0">
+                <span class="text-grey m-reg "><b class="m-bd ">20%</b> Discount on making
+                    charges</span>
+            </p>
+        </div>
+    </div>
+    
+</div>

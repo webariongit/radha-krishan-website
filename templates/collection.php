@@ -6,7 +6,7 @@
                 <div class="row gap-sm-0 gap-4" id="collectionImagesWrapper">
                 </div>
                 <div class="viewAllCollection text-center">
-                    <a href="" class="allColBtn rounded-2 text-center">
+                    <a href="products.php" class="allColBtn rounded-2 text-center">
                         <span class="m-reg text-center text-green ">View All Collection</span>
                     </a>
                 </div>

@@ -31,7 +31,7 @@
         </div>
     </section>
 
-<section class="aboutUs_wrapper">
+    <section class="aboutUs_wrapper">
         <div class="container mt-md-5 mt-3 pt-2 pt-md-5 mb-15r">
             <div class="row align-items-center ">
                 <div class="col-md col-12 ">
@@ -40,7 +40,7 @@
                 <span id="description"></span>
             </div>
         </div>
-</section>
+    </section>
 
  <!-- FOOTER START -->
  <?php include("templates/footer.php"); ?>

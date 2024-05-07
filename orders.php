@@ -329,21 +329,21 @@ $_PAGE_NAME = "My Orders"
 
                     </div> -->
                     <div class="table-responsive order-list">
-                    <table class="table text-center">
-                        <thead>
-                            <tr>
-                                <th>ORDER ID</th>
-                                <th>AMOUNT</th>
-                                <th>DATE & TIME</th>
-                                <th>ORDER STATUS</th>
-                                <th>PAYMENT TYPE</th>
-                                <th>ACTION</th>
-                            </tr>
-                        </thead>
-                        <tbody id="order-list-table">
-                        </tbody>
-                    </table>
-                </div>
+                        <table class="table text-center">
+                            <thead>
+                                <tr>
+                                    <th>ORDER ID</th>
+                                    <th>AMOUNT</th>
+                                    <th>DATE & TIME</th>
+                                    <th>ORDER STATUS</th>
+                                    <th>PAYMENT TYPE</th>
+                                    <th>ACTION</th>
+                                </tr>
+                            </thead>
+                            <tbody id="order-list-table">
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
 
                
@@ -381,7 +381,7 @@ $_PAGE_NAME = "My Orders"
 
                 });
                 } else {
-                    document.querySelector('.order-list').innerHTML = `<div class="row mb-4" ><span class="btn ">No Orders Found.</span></div>`;
+                    document.querySelector('.order-list').innerHTML = `<div class="no-order" ><span class="btn ">No Orders Found.</span></div>`;
                 }
 
             })
