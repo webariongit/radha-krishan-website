@@ -1,9 +1,10 @@
 function initUserForm() {
 
-    const pageInfoUnsubscribe = emitter.subscribe('userInfoUpdated', data => {
+    
+    emitter.subscribe('userInfoUpdated', data => {
         console.log('userInfoUpdated event fired!', data);
       
-        console.log(data);
+        console.log("trigger", data);
     
         if (data.profile_image) {
             document.getElementById('user-profile-pic-preview').src = data.base_url + data.profile_image;
@@ -18,13 +19,14 @@ function initUserForm() {
         document.getElementById('profileEmailLabel').innerHTML = data.email;
         document.getElementById('mobile_no').value = data.mobile_no;
     });
+    
 
     initProfileForm();
-
     initProfilePic();
 
 
 }
+
 
 
 function initProfileForm() {
@@ -147,6 +149,7 @@ function initProfileForm() {
 function initProfilePic() {
     var fileInput = document.querySelector("#profile-input-field");
     const previewImage = document.getElementById('user-profile-pic-preview');
+    const previewImage1 = document.getElementById('profilePicLabel');
 
     var inputs = document.querySelectorAll("#user-profile-form input");
 
@@ -162,6 +165,7 @@ function initProfilePic() {
     const reader = new FileReader();
     reader.onload = (event) => {
         previewImage.src = event.target.result;
+        previewImage1.src = event.target.result;
     };
     reader.readAsDataURL(selectedFile);
 
@@ -181,8 +185,8 @@ function initProfilePic() {
                         .then(response => {
 
                             // Render HTML using the response data
-                            console.log(response);
-
+                            console.log("data",response);
+                            emitter.publish('userInfoUpdated', response);
                             if (response.status !== 200) {
                                 // Toast.danger(response.message);
                                 return;

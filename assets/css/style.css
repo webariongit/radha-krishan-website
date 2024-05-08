@@ -1548,3 +1548,7 @@ select[id="Country"] {
     align-items: center;
     gap: 6px;
 }
+
+.otherblogContent{
+    width: calc(100% - 140px);
+}

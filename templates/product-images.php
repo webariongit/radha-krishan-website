@@ -4,8 +4,11 @@
         <div class="swiper-wrapper" id="productSwiperSliderWrapper">
             
         </div>
-        <button class="wishlist_btn end-15 top-15 position-absolute  bg-white rounded-circle">
+        <button class="wishlist_btn end-15 top-15 position-absolute  bg-white rounded-circle" id="add-wishlist-btn">
             <img src="./assets/img/heart.svg" width="" height="" alt="wishlist-icon">
+        </button>
+        <button class="wishlist_btn end-15 top-15 position-absolute  bg-white rounded-circle" id="remove-wishlist-btn">
+            <img src="./assets/img/heart-filled.svg" width="" height="" alt="wishlist-icon">
         </button>
     </div>
     <div thumbsSlider="" class="swiper mySwiper my-3">

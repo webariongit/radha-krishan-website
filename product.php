@@ -144,7 +144,7 @@ $_PAGE_NAME = "Floret Cutout Gold Band"
                                 <span class="font-18 text-white m-med ">Add to Cart</span>
                             </button>
 
-                            <button id="add-wishlist-btn"
+                            <!-- <button id="add-wishlist-btn"
                                 class="addCartBtn d-flex align-items-center justify-content-center gap-2 text-center border-green rounded-2 d-none">
                                 <span>
                                     <i class="fa fa-heart text-white font-24"></i>
@@ -159,7 +159,7 @@ $_PAGE_NAME = "Floret Cutout Gold Band"
                                     <i class="fa fa-heart text-white font-24"></i>
                                 </span>
                                 <span class="font-18 text-white m-med ">Remove from Wishlist</span>
-                            </button>                            
+                            </button>                             -->
                         </div>
                         <div class="accordion mt-5 pt-2" id="accordionExample">
                             <div class="accordion-item">
@@ -244,7 +244,7 @@ $_PAGE_NAME = "Floret Cutout Gold Band"
                     <div id="modalBody"></div>
                     <div class="d-flex col-12 my-2 justify-content-center">
                         <button
-                            class="col-6 rounded-3 border-0 my-3 h-56  bg-lightgreen text-center text-green py-2 mx-auto font-16 m-bd">
+                            class="col-6 rounded-3 border-0 my-3 h-56  bg-lightgreen text-center text-green py-2 mx-auto font-16 m-bd" data-bs-dismiss="modal" aria-label="Close">
                             Confirm Customization
                         </button>
                     </div>
@@ -968,15 +968,15 @@ $_PAGE_NAME = "Floret Cutout Gold Band"
             if (localStorage.getItem(TOKEN_PREFIX+'token')) {
                 if (product_id && variation_id) {
                     wishlistBtn.setAttribute('disabled', true)
-                    wishlistBtn.innerHTML = spinner;
+                    // wishlistBtn.innerHTML = spinner;
 
                     APIFetcher.fetchData(`${API_BASE_URL}/user/wishlist`, 'POST', {product_id, variation_id}, localStorage.getItem(TOKEN_PREFIX+'token'))
                     .then(response => {
                         // Render HTML using the response data
 
-                        wishlistBtn.innerHTML = `<span>
-                                        <i class="fa fa-heart text-white font-24"></i>
-                                    </span><span class="font-18 text-white m-med "> Add to Wishlist</span>`;
+                        // wishlistBtn.innerHTML = `<span>
+                        //                 <i class="fa fa-heart text-white font-24"></i>
+                        //             </span><span class="font-18 text-white m-med "> Add to Wishlist</span>`;
                         wishlistBtn.removeAttribute("disabled");
 
                         console.log(response)
@@ -1036,15 +1036,15 @@ $_PAGE_NAME = "Floret Cutout Gold Band"
                 if (isWislisted) {
 
                     removeWishlistBtn.setAttribute('disabled', true)
-                    removeWishlistBtn.innerHTML = spinner;
+                    // removeWishlistBtn.innerHTML = spinner;
 
                     APIFetcher.fetchData(`${API_BASE_URL}/user/wishlist/${isWislisted.id}`, 'DELETE', {}, localStorage.getItem(TOKEN_PREFIX+'token'))
                     .then(response => {
                         // Render HTML using the response data
 
-                        removeWishlistBtn.innerHTML = `<span>
-                                        <i class="fa fa-heart text-white font-24"></i>
-                                    </span> <span class="font-18 text-white m-med ">Remove from Wishlist</span>`;
+                        // removeWishlistBtn.innerHTML = `<span>
+                        //                 <i class="fa fa-heart text-white font-24"></i>
+                        //             </span> <span class="font-18 text-white m-med ">Remove from Wishlist</span>`;
                         removeWishlistBtn.removeAttribute("disabled");
 
                         console.log(response)

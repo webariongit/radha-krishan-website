@@ -50,7 +50,10 @@ $_PAGE_NAME = "Blog Detail"
 
                 <div class="position-lg-sticky top-5 w-450">
                     <h3 class="m-bd text-black font-20 mb-4">Other Blog</h3>
-                    <div class="other_blog_card pb-3 border-bottom mb-3 d-flex flex-row gap-20">
+                    <div class="other-blogs">
+
+                    </div>
+                    <!-- <div class="other_blog_card pb-3 border-bottom mb-3 d-flex flex-row gap-20">
                         <div class="otherblogImage rounded-3 overflow-hidden border-1 border-green">
                             <img src="./assets/img/kangan.webp" width="" class="" height="" alt="blog-image">
                         </div>
@@ -62,7 +65,7 @@ $_PAGE_NAME = "Blog Detail"
                                 will be distracted...</p>
                             <p class="text-grey mb-0 text-grey font-12 m-reg">26 Jan 2024 by Miller Scott</p>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
 
@@ -104,10 +107,10 @@ $_PAGE_NAME = "Blog Detail"
         return blog;
     } );
     
-    // ComponentGenerator.populateComponent({ component: 'related-blogs', data: data.related_blogs})
-    // .then(blogList => {
-    //     document.querySelector('.other-blogs').innerHTML += blogList;
-    // })
+    ComponentGenerator.populateComponent({ component: 'related-blogs', data: data.related_blogs})
+    .then(blogList => {
+        document.querySelector('.other-blogs').innerHTML += blogList;
+    })
 
 
 
