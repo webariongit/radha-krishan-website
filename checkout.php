@@ -104,6 +104,7 @@ $_PAGE_NAME = "Checkout"
     var addresses;
     // Get the modal element by its ID
     var modal;
+    var baseUrl = '';
     // Create a new Modal instance using Bootstrap's Modal class
     var modalInstance; 
 
@@ -132,15 +133,14 @@ $_PAGE_NAME = "Checkout"
 
         initAddressForm();
         initEditAddressForm();
-
+        
         emitter.subscribe('cart-updated', (data) => {
             let cart = localStorage.getItem(TOKEN_PREFIX+'cart');
-
             cart = JSON.parse(cart);
             console.log(cart);
 
         })
-
+        getCartProduct();
         if (playload.payment_mode === 'cod') {
             document.getElementById('codPayment').checked = true;
         } else if (paymentMode === 'online') {
@@ -228,7 +228,7 @@ $_PAGE_NAME = "Checkout"
 
                     card = `
                     <div class="col-lg-6 col-12">
-                    <input  ${checked} type="radio" id="billing_address-{{id}}" onchange="selectAddress('{{id}}', 'billing_address')" name="address" class="radio-input" />
+                    <input  ${checked} type="radio" id="billing_address-{{id}}" onchange="selectAddress('{{id}}', 'billing_address')" name="billingaddress" class="radio-input" />
                             <label for="billing_address-{{id}}" class="address-label border-grey border-1 col-12 rounded-3 p-4 py-3 px-4 cursor-pointer"
                                 for="address1">
                                 
@@ -269,8 +269,6 @@ $_PAGE_NAME = "Checkout"
                 APIFetcher.fetchData(`${API_BASE_URL}/user/cart`, 'GET', '', localStorage.getItem(TOKEN_PREFIX+'token'))
                 .then(response => {
                     // Render HTML using the response data
-
-                    console.log(response)
                     refreshCartView(response)
                     
                 })
@@ -284,18 +282,18 @@ $_PAGE_NAME = "Checkout"
         function refreshCartView(response) {
             if (response.status ==200){
                     response.data.map(w => {
-                        w.product_details.image_thumb = response.base_url + w.product_details.image_thumb;
+                        w.product_details.image_thumb = response.base_url + w.product_details?.image[0]?.image;
                     })
 
                     
                     // document.getElementById('expected_delivery_on').innerHTML = response.order_summary.expected_delivery_on ? response.order_summary.expected_delivery_on : '';
-                    document.getElementById('total_price').innerHTML = response.order_summary.total_price;
-                    document.getElementById('total_product_discount').innerHTML = response.order_summary.total_product_discount;
-                    document.getElementById('total_offer_price').innerHTML = response.order_summary.total_offer_price;
-                    document.getElementById('applicable_gst').innerHTML = response.order_summary.applicable_gst;
-                    document.getElementById('coupon_saving').innerHTML = response.order_summary.coupon_saving;
-                    document.getElementById('expected_delivery_charges').innerHTML = response.order_summary.expected_delivery_charges;
-                    document.getElementById('total_cart_amount').innerHTML = response.order_summary.total_cart_amount;
+                    document.getElementById('total_price').innerHTML = '₹ ' + response.order_summary.total_price;
+                    document.getElementById('total_product_discount').innerHTML = '₹ ' +  response.order_summary.total_product_discount;
+                    document.getElementById('total_offer_price').innerHTML = '₹ ' +  response.order_summary.total_offer_price;
+                    document.getElementById('applicable_gst').innerHTML = '₹ ' +  response.order_summary.applicable_gst;
+                    document.getElementById('coupon_saving').innerHTML = '₹ ' +  response.order_summary.coupon_saving;
+                    document.getElementById('expected_delivery_charges').innerHTML = '₹ ' +  response.order_summary.expected_delivery_charges;
+                    document.getElementById('total_cart_amount').innerHTML =  response.order_summary.total_cart_amount;
 
                     localStorage.setItem(TOKEN_PREFIX+'cart', JSON.stringify(response.data) );
                     emitter.publish('cart-updated', response.cart_count);
@@ -732,12 +730,10 @@ $_PAGE_NAME = "Checkout"
         function getCartProduct(){
             let cart = localStorage.getItem(TOKEN_PREFIX+'cart');
                 cart = JSON.parse(cart);
-                console.log("cart",cart)
                 cart.forEach((el)=>{
-                    console.log("elele",el)
                         let card = `<div class="d-flex flex-row align-items-start gap-3 mb-4">
                                     <div class="rounded-4 border-green2 cart_image2 overflow-hidden">
-                                        <img src="${el?.product_details?.image_thumb}" alt="cart-image" width="" height="">
+                                        <img src="${el?.product_details?.image_thumb}" alt="" width="" height="">
                                     </div>
                                     <div class="col">
                                         <h3 class="font-14 m-med text-black mb-12 ">${el?.product_details?.productname}
@@ -751,7 +747,7 @@ $_PAGE_NAME = "Checkout"
                         document.querySelector('#ordered-product').innerHTML += card
                     })
         }
-        getCartProduct();
+        
 
 </script>
 </body>

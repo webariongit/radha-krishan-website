@@ -43,7 +43,7 @@ $_PAGE_NAME = "Wishlist"
                             w.productname = w?.product_details?.productname;
                             w.productcode = w?.product_details?.productcode;
                             w.description = w?.product_details?.description;
-
+                            w.defaultImg = `${BASE_URL}assets/img/logo2.webp`;
                             w.assets = JSON.parse(w.assets);
 
                             w.TOTAL_OFFER_PRICE = w.assets.value.TOTAL_OFFER_PRICE
@@ -95,6 +95,7 @@ $_PAGE_NAME = "Wishlist"
                     if (response.status == 200){
                         response.data.map(w => {
                             w.image = response.base_url + w.product_details.image;
+                            w.defaultImg = `${BASE_URL}assets/img/logo2.webp`;
                         })
                         console.log(response)
                         localStorage.setItem(TOKEN_PREFIX+'wishlist', JSON.stringify(response.data) );

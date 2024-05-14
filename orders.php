@@ -25,7 +25,7 @@ $_PAGE_NAME = "My Orders"
                 <!-- Profile Side Menu END -->
 
                 <div class="w-auto4">
-                    <!-- <ul class="nav nav-pills mb-3 gap-20" id="pills-tab" role="tablist">
+                    <ul class="nav nav-pills mb-3 gap-20" id="pills-tab" role="tablist">
                         <li class="nav-item" role="presentation">
                             <button class="nav-link border-grey px-links active" id="pills-home-tab"
                                 data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab"
@@ -42,293 +42,79 @@ $_PAGE_NAME = "My Orders"
                     <div class="tab-content" id="pills-tabContent">
                         <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
                             aria-labelledby="pills-home-tab" tabindex="0">
-                            <div class="d-flex justify-content-end col-12">
+                            <!-- <div class="d-flex justify-content-end col-12">
                                 <input type="text" class="h-50 border-grey rounded-2 px-2" placeholder="Search">
-                            </div>
+                            </div> -->
                             <div class="overflow-auto">
                                 <table class="col custom_width_order_table">
-                                    <tr class="h-56 border-bottom ">
-                                        <th class="text-center ">
-                                            <span class="font-14 text-black m-bd text-center">Order Id</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <span class="font-14 text-black m-bd text-center">Date Purchased</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <span class="font-14 text-black m-bd text-center">Status</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <span class="font-14 text-black m-bd text-center">Total</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <span class="font-14 text-black m-bd text-center">Payment Type</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <span class="font-14 text-black m-bd text-center"></span>
-                                        </th>
-                                    </tr>
-                                    <tr class="h-56 border-bottom">
-                                        <th class="text-center">
-                                            <span class="m-sbd font-14 text-grey4">RADHA00873</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <span class="m-sbd font-14 text-grey4">02, Feb 2024</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <span class="m-sbd font-14 text-green">Inprogress</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <span class="m-sbd font-14 text-grey4">₹13,585</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <span class="m-sbd font-14 text-grey4">COD</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <a href="./OrderDetail.html"
-                                                style="text-decoration: underline;color: #36B609;"><span
-                                                    class="m-sbd font-14 ">View Details</span></a>
-                                        </th>
-                                    </tr>
-                                    <tr class="h-56 border-bottom">
-                                        <th class="text-center">
-                                            <span class="m-sbd font-14 text-grey4">RADHA00873</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <span class="m-sbd font-14 text-grey4">02, Feb 2024</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <span class="m-sbd font-14 text-green">Inprogress</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <span class="m-sbd font-14 text-grey4">₹13,585</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <span class="m-sbd font-14 text-grey4">Online</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <a href="" style="text-decoration: underline;color: #36B609;"><span
-                                                    class="m-sbd font-14 ">View
-                                                    Details</span></a>
-                                        </th>
-                                    </tr>
-                                    <tr class="h-56 border-bottom">
-                                        <th class="text-center">
-                                            <span class="m-sbd font-14 text-grey4">RADHA00873</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <span class="m-sbd font-14 text-grey4">02, Feb 2024</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <span class="m-sbd font-14 text-green">Inprogress</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <span class="m-sbd font-14 text-grey4">₹13,585</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <span class="m-sbd font-14 text-grey4">COD</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <a href="" style="text-decoration: underline;color: #36B609;"><span
-                                                    class="m-sbd font-14 ">View
-                                                    Details</span></a>
-                                        </th>
-                                    </tr>
-                                    <tr class="h-56 border-bottom">
-                                        <th class="text-center">
-                                            <span class="m-sbd font-14 text-grey4">RADHA00873</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <span class="m-sbd font-14 text-grey4">02, Feb 2024</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <span class="m-sbd font-14 text-green">Inprogress</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <span class="m-sbd font-14 text-grey4">₹13,585</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <span class="m-sbd font-14 text-grey4">Online</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <a href="" style="text-decoration: underline;color: #36B609;"><span
-                                                    class="m-sbd font-14 ">View
-                                                    Details</span></a>
-                                        </th>
-                                    </tr>
-                                    <tr class="h-56">
-                                        <th class="text-center">
-                                            <span class="m-sbd font-14 text-grey4">RADHA00873</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <span class="m-sbd font-14 text-grey4">02, Feb 2024</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <span class="m-sbd font-14 text-green">Inprogress</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <span class="m-sbd font-14 text-grey4">₹13,585</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <span class="m-sbd font-14 text-grey4">COD</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <a href="./OrderDetail.html"
-                                                style="text-decoration: underline;color: #36B609;"><span
-                                                    class="m-sbd font-14 ">View
-                                                    Details</span></a>
-                                        </th>
-                                    </tr>
+                                    <thead>
+                                        <tr class="h-56 border-bottom ">
+                                            <th class="text-center ">
+                                                <span class="font-14 text-black m-bd text-center">Order Id</span>
+                                            </th>
+                                            <th class="text-center">
+                                                <span class="font-14 text-black m-bd text-center">Date Purchased</span>
+                                            </th>
+                                            <th class="text-center">
+                                                <span class="font-14 text-black m-bd text-center">Status</span>
+                                            </th>
+                                            <th class="text-center">
+                                                <span class="font-14 text-black m-bd text-center">Total</span>
+                                            </th>
+                                            <th class="text-center">
+                                                <span class="font-14 text-black m-bd text-center">Payment Type</span>
+                                            </th>
+                                            <th class="text-center">
+                                                <span class="font-14 text-black m-bd text-center"></span>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    
+                                    <tbody id="order-list-table">
+
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="pills-profile" role="tabpanel"
                             aria-labelledby="pills-profile-tab" tabindex="0">
-                            <div class="d-flex justify-content-end col-12">
+                            <!-- <div class="d-flex justify-content-end col-12">
                                 <input type="text" class="h-50 border-grey rounded-2 px-2" placeholder="Search">
-                            </div>
+                            </div> -->
                             <div class="overflow-auto">
                                 <table class="col custom_width_order_table">
-                                    <tr class="h-56 border-bottom ">
-                                        <th class="text-center ">
-                                            <span class="font-14 text-black m-bd text-center">Order Id</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <span class="font-14 text-black m-bd text-center">Date Purchased</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <span class="font-14 text-black m-bd text-center">Status</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <span class="font-14 text-black m-bd text-center">Total</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <span class="font-14 text-black m-bd text-center">Payment Type</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <span class="font-14 text-black m-bd text-center"></span>
-                                        </th>
-                                    </tr>
-                                    <tr class="h-56 border-bottom">
-                                        <th class="text-center">
-                                            <span class="m-sbd font-14 text-grey4">RADHA00873</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <span class="m-sbd font-14 text-grey4">02, Feb 2024</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <span class="m-sbd font-14 text-danger">Cancelled</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <span class="m-sbd font-14 text-grey4">₹13,585</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <span class="m-sbd font-14 text-grey4">COD</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <a href="./OrderDetail.html"
-                                                style="text-decoration: underline;color: #36B609;"><span
-                                                    class="m-sbd font-14 ">View
-                                                    Details</span></a>
-                                        </th>
-                                    </tr>
-                                    <tr class="h-56 border-bottom">
-                                        <th class="text-center">
-                                            <span class="m-sbd font-14 text-grey4">RADHA00873</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <span class="m-sbd font-14 text-grey4">02, Feb 2024</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <span class="m-sbd font-14 text-danger">Cancelled</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <span class="m-sbd font-14 text-grey4">₹13,585</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <span class="m-sbd font-14 text-grey4">Online</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <a href="./OrderDetail.html"
-                                                style="text-decoration: underline;color: #36B609;"><span
-                                                    class="m-sbd font-14 ">View
-                                                    Details</span></a>
-                                        </th>
-                                    </tr>
-                                    <tr class="h-56 border-bottom">
-                                        <th class="text-center">
-                                            <span class="m-sbd font-14 text-grey4">RADHA00873</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <span class="m-sbd font-14 text-grey4">02, Feb 2024</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <span class="m-sbd font-14 text-danger">Cancelled</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <span class="m-sbd font-14 text-grey4">₹13,585</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <span class="m-sbd font-14 text-grey4">COD</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <a href="./OrderDetail.html"
-                                                style="text-decoration: underline;color: #36B609;"><span
-                                                    class="m-sbd font-14 ">View
-                                                    Details</span></a>
-                                        </th>
-                                    </tr>
-                                    <tr class="h-56 border-bottom">
-                                        <th class="text-center">
-                                            <span class="m-sbd font-14 text-grey4">RADHA00873</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <span class="m-sbd font-14 text-grey4">02, Feb 2024</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <span class="m-sbd font-14 text-danger">Cancelled</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <span class="m-sbd font-14 text-grey4">₹13,585</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <span class="m-sbd font-14 text-grey4">Online</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <a href="./OrderDetail.html"
-                                                style="text-decoration: underline;color: #36B609;"><span
-                                                    class="m-sbd font-14 ">View
-                                                    Details</span></a>
-                                        </th>
-                                    </tr>
-                                    <tr class="h-56">
-                                        <th class="text-center">
-                                            <span class="m-sbd font-14 text-grey4">RADHA00873</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <span class="m-sbd font-14 text-grey4">02, Feb 2024</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <span class="m-sbd font-14 text-danger">Cancelled</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <span class="m-sbd font-14 text-grey4">₹13,585</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <span class="m-sbd font-14 text-grey4">COD</span>
-                                        </th>
-                                        <th class="text-center">
-                                            <a href="./OrderDetail.html"
-                                                style="text-decoration: underline;color: #36B609;"><span
-                                                    class="m-sbd font-14 ">View
-                                                    Details</span></a>
-                                        </th>
-                                    </tr>
+                                    <thead>
+                                        <tr class="h-56 border-bottom ">
+                                            <th class="text-center ">
+                                                <span class="font-14 text-black m-bd text-center">Order Id</span>
+                                            </th>
+                                            <th class="text-center">
+                                                <span class="font-14 text-black m-bd text-center">Date Purchased</span>
+                                            </th>
+                                            <th class="text-center">
+                                                <span class="font-14 text-black m-bd text-center">Status</span>
+                                            </th>
+                                            <th class="text-center">
+                                                <span class="font-14 text-black m-bd text-center">Total</span>
+                                            </th>
+                                            <th class="text-center">
+                                                <span class="font-14 text-black m-bd text-center">Payment Type</span>
+                                            </th>
+                                            <th class="text-center">
+                                                <span class="font-14 text-black m-bd text-center"></span>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    
+                                    <tbody id="order-cancel-list-table">
+
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
 
-                    </div> -->
-                    <div class="table-responsive order-list">
+                    </div>
+                    <!-- <div class="table-responsive order-list">
                         <table class="table text-center">
                             <thead>
                                 <tr>
@@ -343,7 +129,7 @@ $_PAGE_NAME = "My Orders"
                             <tbody id="order-list-table">
                             </tbody>
                         </table>
-                    </div>
+                    </div> -->
                 </div>
 
                
@@ -367,18 +153,56 @@ $_PAGE_NAME = "My Orders"
                 if (response.status == 200)
                 {
                     response.data.forEach(order => {
-
-                    document.getElementById('order-list-table').innerHTML +=  `<tr>
-                    <td><span class="mobile-label">ORDER ID :</span> <b>${response.prefix + order.order_id}</b></td>
-                    <td><span class="mobile-label">AMOUNT :</span> ₹ ${order.final_total}</td>
-                    <td><span class="mobile-label">DATE & TIME :</span> ${order.created_at}</td>
-                    <td><span class="mobile-label">ORDER STATUS :</span> <span class="order-badges bg-green">${order.order_status}</span></td>
-                    <td><span class="mobile-label">PAYMENT TYPE :</span> <span class="payment-badges ${order.payment_mode == 'cod' ? 'bg-purple' : 'bg-light-green'}">${order.payment_mode}</span></td>
-                    <td><a href="order-details?order=${order.order_id}" class="view-btn btn">View</a></td>
-                    </tr>`;
-
+                        if(order.order_status != 'Cancelled'){
+                            document.getElementById('order-list-table').innerHTML +=  `
+                                <tr class="h-56 border-bottom">
+                                    <td class="text-center">
+                                        <span class="m-sbd font-14 text-grey4">${response.prefix + order.order_id}</span>
+                                    </td>
+                                    <td class="text-center">
+                                        <span class="m-sbd font-14 text-grey4">${order.created_at}</span>
+                                    </td>
+                                    <td class="text-center">
+                                        <span class="m-sbd font-14 text-green">${order.order_status}</span>
+                                    </td>
+                                    <td class="text-center">
+                                        <span class="m-sbd font-14 text-grey4">₹ ${order.final_total}</span>
+                                    </td>
+                                    <td class="text-center">
+                                        <span class="m-sbd font-14 text-grey4">${order.payment_mode}</span>
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="order-details?order=${order.order_id}"
+                                            style="text-decoration: underline;color: #36B609;"><span
+                                            class="m-sbd font-14 ">View Details</span></a>
+                                    </td>
+                                </tr>`;
+                        }else{
+                            document.getElementById('order-cancel-list-table').innerHTML +=  `
+                                <tr class="h-56 border-bottom">
+                                    <td class="text-center">
+                                        <span class="m-sbd font-14 text-grey4">${response.prefix + order.order_id}</span>
+                                    </td>
+                                    <td class="text-center">
+                                        <span class="m-sbd font-14 text-grey4">${order.created_at}</span>
+                                    </td>
+                                    <td class="text-center">
+                                        <span class="m-sbd font-14 text-danger">${order.order_status}</span>
+                                    </td>
+                                    <td class="text-center">
+                                        <span class="m-sbd font-14 text-grey4">₹ ${order.final_total}</span>
+                                    </td>
+                                    <td class="text-center">
+                                        <span class="m-sbd font-14 text-grey4">${order.payment_mode}</span>
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="order-details?order=${order.order_id}"
+                                            style="text-decoration: underline;color: #36B609;"><span
+                                            class="m-sbd font-14 ">View Details</span></a>
+                                    </td>
+                                </tr>`;
+                        }
                     
-
                 });
                 } else {
                     document.querySelector('.order-list').innerHTML = `<div class="no-order" ><span class="btn ">No Orders Found.</span></div>`;

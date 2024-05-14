@@ -1552,3 +1552,32 @@ select[id="Country"] {
 .otherblogContent{
     width: calc(100% - 140px);
 }
+
+.order-complete-content{
+    text-align: center;
+    padding: 60px 0px;
+}
+
+.order-complete-content img{
+    width: 120px;
+    margin-bottom: 26px;
+}
+
+.order-complete-content h4{
+    font-weight: 800;
+    color:#000;
+    font-size: 26px;
+}
+
+.order-complete-content p{
+    font-weight: 600;
+    color: #001C29;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.order-complete-content h6{
+    font-weight: 400;
+    font-size: 14px;
+    margin-bottom: 40px;
+}

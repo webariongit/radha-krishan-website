@@ -50,19 +50,14 @@ $_PAGE_NAME = "My Orders"
                     </div> -->
                     <div class="col-12 row gy-3 justify-content-between mt-4 pt-3">
                         <div class="col-lg col-12">
-                            <div class="mb-40">
-                                <h3 class="font-16 m-bd text-black mb-3">Shipping Address</h3>
-
-                                <div class="col border-grey rounded-4 p-3"  id="shipping_address_details"></div>
+                            <div class="mb-40" id="shipping_address_details">
+                                
                             </div>
-                            <div>
-                                <h3 class="font-16 m-bd text-black mb-3">Billing Address</h3>
-                                <div class="col border-grey rounded-4 p-3" id="billing_address_details"></div>
+                            <div id="billing_address_details">
+                                
                             </div>
                         </div>
-                        <div class="col-lg col-12 pe-lg-0">
-                            <h3 class="font-16 m-bd text-black mb-3">Order Summary</h3>
-                            <div id="order_summary"></div>
+                        <div class="col-lg col-12 pe-lg-0" id="order_summary">
                             <!-- <div class="d-flex col-12 justify-content-between align-items-center mb-3">
                                 <p class="mb-0 font-14 m-med text-black">Subtotal</p>
                                 <p class="mb-0 font-14 m-med text-black">₹13,585</p>
@@ -114,7 +109,7 @@ $_PAGE_NAME = "My Orders"
                 // Render HTML using the response data
                 orderDetails = response
                 console.log(response)
-                document.getElementById('invoice-details').innerHTML =`<p class="mb-0 font-16 m-bd  col-6">
+                document.getElementById('invoice-details').innerHTML =`<p class="font-16 m-bd  col-6">
                                                                             <span class="font-16 text-black">Order Id :</span>
                                                                             <span class="text-grey">${response?.prefix + response?.data?.id}</span>
                                                                         </p>
@@ -122,7 +117,7 @@ $_PAGE_NAME = "My Orders"
                                                                             <span class="font-16 text-black">Order Date :</span>
                                                                             <span class="text-grey">${DateTime.formatDate(response?.data?.created_at)}</span>
                                                                         </p>
-                                                                        <p class="mb-0 font-16 m-bd  col-6">
+                                                                        <p class="font-16 m-bd  col-6">
                                                                             <span class="font-16 text-black">Expected Delivery Date :</span>
                                                                             <span class="text-grey">${response?.data?.delievery_date ? response.data.delievery_date: 'N/A'}</span>
                                                                         </p>
@@ -168,15 +163,13 @@ $_PAGE_NAME = "My Orders"
                                                                                     <div class="d-flex flex-row align-items-center gap-3 col-7">
                                                                                         <a href="${BASE_URL}product?product_id=${ item.product_detail.id}">
                                                                                             <div class="rounded-4 border-green2 cart_image2 overflow-hidden">
-                                                                                                <img src="${response.base_url + item.product_detail.image}" alt="cart-image" width="" height="">
+                                                                                                <img src="${response.base_url + item.product_detail?.image[0]?.image}" alt="cart-image" width="" height="">
                                                                                             </div>
                                                                                         </a>
                                                                                         <div class="col">
-                                                                                            <h3 class="font-14 m-med text-black mb-4 col-lg-12 col track-3">${item.product_detail.productname}</h3>
+                                                                                            <h3 class="font-16 m-med text-black mb-4 col-lg-12 col track-3">${item.product_detail.productname}</h3>
 
                                                                                             <p class="text-black font-14 m-sbd mb-3">${item.product_detail.productcode}</p>
-                                                                                            ${attributesEl}
-
                                                                                         </div>
                                                                                     </div>
                                                                                     <div class="col text-end">
@@ -200,13 +193,14 @@ $_PAGE_NAME = "My Orders"
                     }
                 }
 
-                document.getElementById('shipping_address_details').innerHTML = `<h3 class="font-16 m-bd text-black">${response?.data?.shipping_address_details?.type}</h3>
-                    <address class="m-reg text-grey4 font-14" > ${response?.data?.shipping_address_details?.name} </address>
-                    <address class="m-reg text-grey4 font-14" > ${response?.data?.shipping_address_details?.line_1}, ${response?.data?.shipping_address_details?.line_2} </address>
-                    <address class="m-reg text-grey4 font-14" > ${response?.data?.shipping_address_details?.landmark} </address>
-                    <address class="m-reg text-grey4 font-14" >${response?.data?.shipping_address_details?.city} Pincode - ${response?.data?.shipping_address_details?.pincode} </address>    
-                    <address class="m-reg text-grey4 font-14" > ${response?.data?.shipping_address_details?.state} - ${response?.data?.shipping_address_details?.country}</address>   
-                    <address class="m-reg text-grey4 font-14" >${response?.data?.shipping_address_details?.phone_no} ${response?.data?.shipping_address_details?.alternate_phone_no}</address>`;
+                document.getElementById('shipping_address_details').innerHTML = `
+                <h3 class="font-16 m-bd text-black mb-3">Shipping Address</h3>
+
+                    <div class="col border-grey rounded-4 p-3"  >
+                        <h3 class="font-16 m-bd text-black">${response?.data?.shipping_address_details?.type}</h3>
+                        <address class="m-reg text-grey4 font-14  mb-0" > ${response?.data?.shipping_address_details?.name}, ${response?.data?.shipping_address_details?.line_1}, ${response?.data?.shipping_address_details?.line_2}, ${response?.data?.shipping_address_details?.landmark}, ${response?.data?.shipping_address_details?.city}, Pincode - ${response?.data?.shipping_address_details?.pincode}, ${response?.data?.shipping_address_details?.state} - ${response?.data?.shipping_address_details?.country}, ${response?.data?.shipping_address_details?.phone_no} ${response?.data?.shipping_address_details?.alternate_phone_no}  </address>
+                    </div>
+                `;
 
                     for (const key in response?.data?.billing_address_details) {
                         // Check if the property value is null
@@ -220,64 +214,52 @@ $_PAGE_NAME = "My Orders"
                     
                 
 
-                document.getElementById('billing_address_details').innerHTML = `<h3 class="font-16 m-bd text-black">${response?.data?.billing_address_details?.type}</h3>
-                <address class="m-reg text-grey4 font-14" > ${response?.data?.billing_address_details?.name} </address>
-                <address class="m-reg text-grey4 font-14" > ${response?.data?.billing_address_details?.line_1}, ${response?.data?.billing_address_details?.line_2} </address>
-                <address class="m-reg text-grey4 font-14" > ${response?.data?.billing_address_details?.landmark} </address>
-                <address class="m-reg text-grey4 font-14" >${response?.data?.billing_address_details?.city} Pincode - ${response?.data?.billing_address_details?.pincode} </address>   
-                <address class="m-reg text-grey4 font-14" > ${response?.data?.billing_address_details?.state} - ${response?.data?.billing_address_details?.country}</address>   
-                <address class="m-reg text-grey4 font-14" >${response?.data?.billing_address_details?.phone_no} ${response?.data?.billing_address_details?.alternate_phone_no}</address>`;
+                document.getElementById('billing_address_details').innerHTML = `
+                <h3 class="font-16 m-bd text-black mb-3">Billing Address</h3>
+                                <div class="col border-grey rounded-4 p-3" >
+                                <h3 class="font-16 m-bd text-black">${response?.data?.billing_address_details?.type}</h3>
+                <address class="m-reg text-grey4 font-14 mb-0" > ${response?.data?.billing_address_details?.name}, ${response?.data?.billing_address_details?.line_1}, ${response?.data?.billing_address_details?.line_2}, ${response?.data?.billing_address_details?.landmark}, ${response?.data?.billing_address_details?.city}, Pincode - ${response?.data?.billing_address_details?.pincode}, ${response?.data?.billing_address_details?.state} - ${response?.data?.billing_address_details?.country}, ${response?.data?.billing_address_details?.phone_no} ${response?.data?.billing_address_details?.alternate_phone_no} </address>
+                                </div>
+                `;
 
-                document.getElementById('order_summary').innerHTML = ` <h4>Order Summary</h4>
-                <table class="table">
-                    <tr>
-                        <th>Subtotal</th>
-                        <td>:</td>
-                        <td>₹ ${+response?.data?.total_amount + +response?.data?.discount_amount}</td>
-                    </tr>
-                    <tr>
-                        <th>You Saved</th>
-                        <td>:</td>
-                        <td><span class="text-red">- ₹ ${response?.data?.discount_amount}</span></td>
-                    </tr>
-                    <tr>
-                        <th>Coupon Discount</th>
-                        <td>:</td>
-                        <td>₹ ${response?.data?.coupon_discount}</td>
-                    </tr>
-                    <tr>
-                        <th>Delivery Charge (Standard)</th>
-                        <td>:</td>
-                        <td>₹ ${response?.data?.delivery_charge}</td>
-                    </tr>
-                    <tr>
-                        <th>GST</th>
-                        <td>:</td>
-                        <td>${response?.data?.total_gst}</td>
-                    </tr>
-                    <tr>
-                        <th>Payment Method</th>
-                        <td>:</td>
-                        <td>${(response?.data?.payment_mode).toUpperCase()}</td>
-                    </tr>
-                    <tr>
-                        <th>Payment Status</th>
-                        <td>:</td>
-                        <td>${(response?.data?.payment_status).toUpperCase()}</td>
-                    </tr>
-                    <tr>
-                        <th>Transaction Id</th>
-                        <td>:</td>
-                        <td>${response?.data?.transaction_id ? response?.data?.transaction_id : 'N/A'}</td>
-                    </tr>
-                    <tr>
-                        <th>Total Amount</th>
-                        <td>:</td>
-                        <td colspan="2">₹ ${response?.data?.final_total}</td>
-                    </tr>
-                </table>`
-                
-            
+                document.getElementById('order_summary').innerHTML = `
+                <h3 class="font-16 m-bd text-black mb-3">Order Summary</h3>
+                <div class="d-flex col-12 justify-content-between align-items-center mb-3">
+                    <p class="mb-0 font-14 m-med text-black">Subtotal</p>
+                    <p class="mb-0 font-14 m-med text-black">₹ ${+response?.data?.total_amount + +response?.data?.discount_amount}</p>      
+                </div>
+                <div class="d-flex col-12 justify-content-between align-items-center mb-3">
+                    <p class="mb-0 font-14 m-med text-black">You Saved</p>
+                    <p class="mb-0 font-14 m-med text-black">- ₹ ${response?.data?.discount_amount}</p>      
+                </div>
+                <div class="d-flex col-12 justify-content-between align-items-center mb-3">
+                    <p class="mb-0 font-14 m-med text-black">Coupon Discoun</p>
+                    <p class="mb-0 font-14 m-med text-black">₹ ${response?.data?.coupon_discount}</p>      
+                </div>
+                <div class="d-flex col-12 justify-content-between align-items-center mb-3">
+                    <p class="mb-0 font-14 m-med text-black">Delivery Charge (Standard)</p>
+                    <p class="mb-0 font-14 m-med text-black">₹ ${response?.data?.delivery_charge}</p>      
+                </div>
+                <div class="d-flex col-12 justify-content-between align-items-center mb-3">
+                    <p class="mb-0 font-14 m-med text-black">GST</p>
+                    <p class="mb-0 font-14 m-med text-black">₹ ${response?.data?.total_gst}</p>      
+                </div>
+                <div class="d-flex col-12 justify-content-between align-items-center mb-3">
+                    <p class="mb-0 font-14 m-med text-black">Payment Method</p>
+                    <p class="mb-0 font-14 m-med text-black">${(response?.data?.payment_mode).toUpperCase()}</p>      
+                </div>
+                <div class="d-flex col-12 justify-content-between align-items-center mb-3">
+                    <p class="mb-0 font-14 m-med text-black">Payment Status</p>
+                    <p class="mb-0 font-14 m-med text-black">${(response?.data?.payment_status).toUpperCase()}</p>      
+                </div>
+                <div class="d-flex col-12 justify-content-between align-items-center mb-3">
+                    <p class="mb-0 font-14 m-med text-black">Transaction Id</p>
+                    <p class="mb-0 font-14 m-med text-black">${response?.data?.transaction_id ? response?.data?.transaction_id : 'N/A'}</p>      
+                </div>
+                <div class="d-flex col-12 justify-content-between align-items-center mt-2 mb-3">
+                    <p class="mb-0 font-16 m-bd text-black">Total Cost</p>
+                    <p class="mb-0 font-16 m-bd text-black">₹ ${response?.data?.final_total}</p>
+                </div>`
             })
             .catch(error => {
                 console.error('Error:', error);

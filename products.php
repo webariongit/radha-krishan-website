@@ -567,6 +567,10 @@
 
 
                         </div>
+                        <div class="text-center  d-none">
+                            <button id="load-more-btn" type="button" class="btn main-btn" onclick="nextPage()">Load More...</button>
+                        </div>
+                        
                     </div>
                     <nav aria-label="Page navigation example" class="mt-5 pt-2 d-flex justify-content-center">
                         <ul id="pagination" class="pagination gap-1">
@@ -753,10 +757,11 @@
                 
                 
                 //    document.getElementById('result-count').innerText = `(${productList.length} Results)`;
-                console.log("productList", productList)
+
                 productList.map(product => {
-                        product.image_thumb = base_url + product.image_thumb
-                        product.image = base_url + product.image
+                        product.image_thumb = base_url + product?.image[0]?.image
+                        product.image = base_url + product?.image[0]?.image
+                        product.default = `${BASE_URL}assets/img/logo2.webp`;
                         product.created_at = DateTime.formatDate(product.created_at);
 
                         let reviews = +product.reviews;
@@ -996,6 +1001,11 @@
             window.location.href = BASE_URL + 'products' +  `?${queryParams.join('&')}`;
 
         });
+
+        function nextPage() {
+            pageNo++;
+            initFilteredProductsList();
+        }
 
         initFilterBox();
         initFilteredProductsList() ;

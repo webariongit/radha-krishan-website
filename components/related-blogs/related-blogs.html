@@ -1,12 +1,14 @@
-<div class="other_blog_card pb-3 border-bottom mb-3 d-flex flex-row gap-20">
-    <div class="otherblogImage rounded-3 overflow-hidden border-1 border-green">
-        <img src="{{blog_image_thumb}}" width="" class="" height="" alt="{{blog_image_alt}}">
+<a href="{{href}}">
+    <div class="other_blog_card pb-3 border-bottom mb-3 d-flex flex-row gap-20">
+        <div class="otherblogImage rounded-3 overflow-hidden border-1 border-green">
+            <img src="{{blog_image_thumb}}" width="" class="" height="" onerror="this.src='{{defaultImg}}'" alt="{{blog_image_alt}}">
+        </div>
+        <div class="d-flex flex-column otherblogContent">
+            <h3 class="m-sbd text-black font-18 mb-3">
+                {{blog_title}}
+            </h3>
+            <span class=" track-2 text-grey font-14 m-reg ellipsis">{{description}}</span>
+            <p class="text-grey mb-0 text-grey font-12 m-reg">{{created_at}}</p>
+        </div>
     </div>
-    <div class="d-flex flex-column otherblogContent">
-        <h3 class="m-sbd text-black font-18 mb-3">
-            {{blog_title}}
-        </h3>
-        <span class=" track-2 text-grey font-14 m-reg ellipsis">{{description}}</span>
-        <p class="text-grey mb-0 text-grey font-12 m-reg">{{created_at}}</p>
-    </div>
-</div>
+</a>

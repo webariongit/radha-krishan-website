@@ -73,7 +73,7 @@
                         </div>
                         <div class="d-flex col-12 justify-content-between align-items-center mt-2 mb-3">
                             <p class="mb-0 font-16 m-sbd text-black">Total Cost</p>
-                            <p class="mb-0 font-16 m-sbd text-black"><span id="total_cart_amount"></span></p>
+                            <p class="mb-0 font-16 m-sbd text-black">₹ <span id="total_cart_amount"></span></p>
                         </div>
                         <!-- <button
                         onclick=""

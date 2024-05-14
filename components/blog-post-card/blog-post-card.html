@@ -1,6 +1,6 @@
 <a href="./blog-detail.php?b_id={{id}}" class="blog_card overflow-hidden rounded-3 border-grey  bg-white">
     <div class="blog_image overflow-hidden">
-        <img src="{{blog_image_thumb}}" width="" height="" alt="">
+        <img src="{{blog_image_thumb}}" width="" height="" onerror="this.src='{{defaultImg}}'" alt="">
     </div>
     <div class="p-3">
         <h3 class="font-18 text-black m-sbd mb-3">{{blog_title}}</h3>

@@ -90,6 +90,7 @@ $_PAGE_NAME = "Blog Detail"
     
         data.blog_image = response.base_url + data.blog_image;
         data.blog_image_thumb = response.base_url + data.blog_image_thumb
+        data.defaultImg = `${BASE_URL}assets/img/logo2.webp`;
         data.created_at = DateTime.formatDate(data.created_at);
         data.href = 'blog/' + data.id + '/' + ((data.blog_title).replaceAll(' ', '-') ).toLowerCase() + '.html';
        
@@ -103,7 +104,8 @@ $_PAGE_NAME = "Blog Detail"
      data.related_blogs.map(blog => {
         blog.blog_image_thumb = response.base_url + blog.blog_image_thumb
         blog.created_at = DateTime.formatDate(blog.created_at);
-        blog.href = '/blog/' + blog.id + '/' + ((blog.blog_title).replaceAll(' ', '-') ).toLowerCase() + '.html';
+        data.defaultImg = `${BASE_URL}assets/img/logo2.webp`;
+        blog.href = '/blog-detail.php?b_id=' + blog.id + '/' + ((blog.blog_title).replaceAll(' ', '-') ).toLowerCase() + '.html';
         return blog;
     } );
     

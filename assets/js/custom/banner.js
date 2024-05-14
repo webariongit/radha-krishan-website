@@ -84,7 +84,7 @@ function initBanners(response)
                                         <div class="col">
                                         <a href="products.php?category={{id}}">
                                             <div class="position-relative collectionCategories overflow-hidden rounded-4">
-                                                <img src="{{image}}" alt="product-image" width="" height=""
+                                                <img src="{{image}}" width="" height=""
                                                     class="rounded-4">
                                                 <div class="position-absolute bottom-0 w-100 bottom-card-title">
                                                     <span class="text-white m-reg">{{category}}</span>
@@ -108,7 +108,6 @@ function initProductSlider(response, data)
 
     const customCode = document.querySelector(`#${data.wrapperId}`);
     if (customCode) {
-        // console.log(response)
         document.querySelector('#FeaturedProductWrapperHeading').innerText = "Featured Products";
         response = JSON.parse(JSON.stringify(response))
         let featured_products = response?.data?.find(obj => obj.key_name ===  `${data.key}`);
@@ -116,8 +115,9 @@ function initProductSlider(response, data)
         // filter eligible products
         featured_products.key_value = featured_products.key_value.filter(p => (p.material_attribute !== undefined && p.material_attribute.length > 0));
         featured_products.key_value.map(product => {
-            product.image_thumb = response.base_url + product.image_thumb
-            product.image = response.base_url + product.image
+            product.image_thumb = response.base_url + product?.image[0]?.image
+            product.image = response.base_url + product?.image[0]?.image
+            product.defaultImg = `${BASE_URL}assets/img/logo2.webp`;
             product.created_at = DateTime.formatDate(product.created_at);
 
             let reviews = +product.reviews;

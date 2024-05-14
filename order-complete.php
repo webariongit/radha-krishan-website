@@ -29,7 +29,7 @@ $_PAGE_NAME = "Order Completed"
 
             <div class="d-flex flex-row flex-wrap align-items-center justify-content-center gap-40">
                 <a
-                    href="/"
+                    href="<?= $BASE_URL ; ?> "
                     class="bg-gray border-0 d-flex h-50 rounded-2 d-flex align-items-center justify-content-center py-11 px-5 w-208">
                     <span class="font-16 text-black text-center m-reg text-nowrap">Go back shopping</span>
                 </a>

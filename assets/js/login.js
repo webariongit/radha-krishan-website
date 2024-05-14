@@ -387,7 +387,7 @@ function logout() {
         if (response.status == 200){
           response.data.map(w => {
             if (w?.product_details?.image_thumb)
-            w.image_thumb = response.base_url + w.product_details.image_thumb;
+            w.image_thumb = response.base_url + w.product_details?.image[0]?.image;
             let wishListedProducts = document.querySelectorAll(".wishlist-product-"+w.id);
             wishListedProducts.forEach(i => i.src = "./assets/img/heart-filled.svg");
 
@@ -555,7 +555,7 @@ function initNavMegaMenu() {
     cat.navigation.forEach(nav => {
        
 
-        if (nav?.filter_values?.length > 0) {
+        if (nav?.filter_values?.length > 0 && nav.filter_name != 'Most Trending') {
            
             let navitem =  `<div class="col">
             <h3 class="font-14 m-med text-black mb-1">SHOP BY ${nav.filter_name}</h3>

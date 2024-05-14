@@ -72,10 +72,10 @@ $_PAGE_NAME = "Floret Cutout Gold Band"
                                 <div class="col d-flex flex-column position-relative">
                                     <label for="select_size" class="product_text m-sbd text-black mb-11">Check Delivery Details</label>
                                     <form id="pincode-checker-form">
-                                    
-                                        <input id="pincode" type="text" class="detail_select border-green m-bd text-black rounded-2">
-                                        <button type="submit" class="checkDeliveryBtn  align-items-center justify-content-center gap-2 text-center border-green rounded-2 text-white" id="delivery-search-btn">Check</button>
-                                       
+                                        <div class="d-flex gap-2 align-items-center">
+                                            <input id="pincode" type="text" class="detail_select border-green m-bd text-black rounded-2">
+                                            <button type="submit" class="checkDeliveryBtn  align-items-center justify-content-center gap-2 text-center border-green rounded-2 text-white" id="delivery-search-btn">Check</button>
+                                        </div>
                                     </form>
                                 </div>
                                 <div class="d-flex flex-row gap-2 align-items-start mt-20">
@@ -141,7 +141,7 @@ $_PAGE_NAME = "Floret Cutout Gold Band"
                                 <span>
                                     <i class="fa fa-bag-shopping text-white font-24"></i>
                                 </span>
-                                <span class="font-18 text-white m-med ">Add to Cart</span>
+                                <span class="font-18 text-white m-med ">Remove From Cart</span>
                             </button>
 
                             <!-- <button id="add-wishlist-btn"
@@ -663,18 +663,29 @@ $_PAGE_NAME = "Floret Cutout Gold Band"
                 try {
                     // ComponentGenerator.makeVarGlobal({'response': response})
                     console.log("REPONSE DATA", response)
-                        response?.data?.image.map(image => {
-                            image.thumbnail = image.thumbnail ? response.base_url + image.thumbnail : response.base_url + image.image
-                            image.image = response.base_url + image.image;
 
-                            document.getElementById('productSwiperSliderWrapper').innerHTML += `<div class="swiper-slide"><img src="${image.image}" width="" height="" alt="product-image" /></div>`;
+                        response.data.material_attribute[0].variations.forEach((el)=>{
+                            el.value.images.forEach((image, index) => {
+                                console.log("image", image)
+                                image = response.base_url + image
+                                // document.getElementById('productSwiperSliderWrapper').innerHTML += `<div class="swiper-slide"><img src="${image}" width="" height="" alt="product-image" /></div>`;
+                                // document.getElementById('productThumbSwiperSliderWrapper').innerHTML += `<div class="swiper-slide"><img src="${image}" width="" height="" alt="product-image" /></div>`;
+                                return image;
+                            } );
+                        })
 
-                            document.getElementById('productThumbSwiperSliderWrapper').innerHTML += `<div class="swiper-slide"><img src="${image.thumbnail}" width="" height="" alt="product-image" /></div>`;
+                        // response?.data?.image.map(image => {
+                        //     image.thumbnail = image.thumbnail ? response.base_url + image.thumbnail : response.base_url + image.image
+                        //     image.image = response.base_url + image.image;
+
+                        //     document.getElementById('productSwiperSliderWrapper').innerHTML += `<div class="swiper-slide"><img src="${image.image}" width="" height="" alt="product-image" /></div>`;
+
+                        //     document.getElementById('productThumbSwiperSliderWrapper').innerHTML += `<div class="swiper-slide"><img src="${image.thumbnail}" width="" height="" alt="product-image" /></div>`;
 
                             
 
-                            return image;
-                        } );
+                        //     return image;
+                        // } );
                 
                         document.getElementById('productCode').innerText = response?.data?.productcode;
                         document.getElementById('productTitle').innerText = response?.data?.productname;
@@ -699,7 +710,7 @@ $_PAGE_NAME = "Floret Cutout Gold Band"
                                 updatePriceBreakup();
                            
 
-
+                                updateImages()
                            
                            
                         } catch (e) {
@@ -735,6 +746,7 @@ $_PAGE_NAME = "Floret Cutout Gold Band"
                     })
 
                     document.querySelector('#add-cart-btn').addEventListener('click', () => {
+                        console.log("triggered")
                         addToCart();
                     })
 
@@ -774,7 +786,7 @@ $_PAGE_NAME = "Floret Cutout Gold Band"
             const customCode = document.querySelector(`#${data.wrapperId}`);
             document.querySelector('#FeaturedProductWrapperHeading').innerText = "Similar Products";
             if (customCode) {
-                // console.log(response)
+
                 response = JSON.parse(JSON.stringify(response))
                 console.log(response)
                 let featured_products = response?.data[data.key];
@@ -783,8 +795,10 @@ $_PAGE_NAME = "Floret Cutout Gold Band"
                 // featured_products = featured_products.filter(p => (p.material_attribute !== undefined && p.material_attribute.length > 0));
 
                 featured_products.map(product => {
-                    product.image_thumb = response.base_url + product.image_thumb
-                    product.image = response.base_url + product.image
+                    console.log("product", product)
+                    product.image_thumb = response.base_url + product?.image[0]?.image;
+                    product.image = response.base_url + product?.image[0]?.image;
+                    product.defaultImg = `${BASE_URL}assets/img/logo2.webp`;
                     product.created_at = DateTime.formatDate(product.created_at);
 
                     // let reviews = +product.reviews;
@@ -959,9 +973,11 @@ $_PAGE_NAME = "Floret Cutout Gold Band"
         }
 
         function updateSelectedVariation(v_id) {
+            console.log("variation_id", v_id)
             variation_id = v_id;
             history.pushState(null, APP__NAME, BASE_URL + `/product?product_id=${product_id}&v_id=${v_id}`);
             updatePriceBreakup();
+            updateImages();
         }
 
         function addToWishlist() {
@@ -1065,6 +1081,7 @@ $_PAGE_NAME = "Floret Cutout Gold Band"
         }
 
         function addToCart() {
+            console.log("triggered")
             if (localStorage.getItem(TOKEN_PREFIX+'token')) {
             
 
@@ -1246,6 +1263,18 @@ $_PAGE_NAME = "Floret Cutout Gold Band"
         table.insertAdjacentHTML('beforeend', price_breakup);  
 
         document.getElementById('total_product_price_with_gst').innerText = '₹ ' + current_price.total_product_price_with_gst;
+    }
+
+    function updateImages(){
+        let currentVariation = productDetails?.data?.material_attribute[0].variations.find(v => v.id == variation_id);
+        document.getElementById('productSwiperSliderWrapper').innerHTML = '';
+        document.getElementById('productThumbSwiperSliderWrapper').innerHTML = '';
+        currentVariation.value.images.forEach((image, index) => {
+            image = productDetails.base_url + image
+            document.getElementById('productSwiperSliderWrapper').innerHTML += `<div class="swiper-slide"><img src="${image}" width="" height="" alt="product-image" /></div>`;
+            document.getElementById('productThumbSwiperSliderWrapper').innerHTML += `<div class="swiper-slide"><img src="${image}" width="" height="" alt="product-image" /></div>`;
+            return image;
+        } );
     }
 
 

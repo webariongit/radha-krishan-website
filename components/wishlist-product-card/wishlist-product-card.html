@@ -4,7 +4,7 @@
             <div class="swiper productImageSwiper">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
-                        <img src="{{image}}" alt="product-image" width=""
+                        <img src="{{image}}" onerror="this.src='{{defaultImg}}'" alt="product-image" width=""
                             height="">
                     </div>
                     <!-- <div class="swiper-slide">
@@ -20,7 +20,7 @@
                 <div class="swiper-button-prev small_swiper_btn"></div> -->
             </div>
             <button
-            onclick="removeToWishlist({{id}})"
+            onclick="removeToWishlist({id})"
              class="wishlist_btn end-15 top-15 position-absolute  bg-white rounded-circle">
                 <img src="./assets/img/heart-filled.svg" width="" height="" alt="wishlist-icon" class="wishlist-product-{{id}}">
             </button>

@@ -63,6 +63,7 @@ $_PAGE_NAME = "Cart"
                             </span>
                         </button>
                     </div>
+                    <span id="coupon_msg"></span>
                     <p class="text-grey font-14 m-sbd my-2">
                         Coupons
                     </p>
@@ -140,7 +141,7 @@ $_PAGE_NAME = "Cart"
      <?php include("./templates/footer.php"); ?>
     <!-- FOOTER END -->
     <script>
-
+    var baseUrl = '';
     pincodeModal = document.getElementById('applypincode');
     pincodeModalInstance = new bootstrap.Modal(pincodeModal);
 
@@ -148,7 +149,7 @@ $_PAGE_NAME = "Cart"
                         let cart = localStorage.getItem(TOKEN_PREFIX+'cart');
 
                         cart = JSON.parse(cart);
-                        console.log(cart)
+                        console.log("cart",cart)
                         document.querySelector('#cart-products').innerHTML  = '';
                         document.getElementById('total-count-cart').innerHTML = `Total Items (${data})`;
 
@@ -162,8 +163,8 @@ $_PAGE_NAME = "Cart"
                             cart.map(c => {
                             c.assets = JSON.parse(c.assets);
                             
-                            c.image_thumb =   c.product_details.image_thumb;
-                            c.image_all_tag = c.product_details.image_all_tag;
+                            c.image_thumb =  c.product_details?.image_thumb;
+                            c.image_all_tag = c.product_details?.image[0]?.alt;
                             c.productname =   c.product_details.productname;
                             c.productcode =   c.product_details.productcode;
                             c.total_offer_price = c.assets.value.TOTAL_OFFER_PRICE;
@@ -227,19 +228,19 @@ $_PAGE_NAME = "Cart"
                     document.querySelector('#empty-cart').classList.add('d-none');
 
                     response.data.map(w => {
-                        w.product_details.image_thumb = response.base_url + w.product_details.image_thumb;
+                        w.product_details.image_thumb = response.base_url + w.product_details.image[0]?.image;
                     })
 
                     if (response.cart_count) { 
                     document.getElementById('pincode').value =  response.order_summary.pincode ?  response.order_summary.pincode : '';
                     document.getElementById('expt-delivery').innerHTML = response.order_summary.expected_delivery_on ? `Expected delivery by ${response.order_summary.expected_delivery_on}` : '';
-                    document.getElementById('total_price').innerHTML = response.order_summary.total_price;
-                    document.getElementById('total_product_discount').innerHTML = response.order_summary.total_product_discount;
-                    document.getElementById('total_offer_price').innerHTML = response.order_summary.total_offer_price;
-                    document.getElementById('applicable_gst').innerHTML = response.order_summary.applicable_gst;
-                    document.getElementById('coupon_saving').innerHTML = response.order_summary.coupon_saving ? response.order_summary.coupon_saving : 0;
-                    document.getElementById('expected_delivery_charges').innerHTML = response.order_summary.expected_delivery_charges;
-                    document.getElementById('total_cart_amount').innerHTML = response.order_summary.total_cart_amount;
+                    document.getElementById('total_price').innerHTML = '₹ ' +  response.order_summary.total_price;
+                    document.getElementById('total_product_discount').innerHTML = '₹ ' +  response.order_summary.total_product_discount;
+                    document.getElementById('total_offer_price').innerHTML = '₹ ' +  response.order_summary.total_offer_price;
+                    document.getElementById('applicable_gst').innerHTML = '₹ ' +  response.order_summary.applicable_gst;
+                    document.getElementById('coupon_saving').innerHTML = '₹ ' +  response.order_summary.coupon_saving ? '₹ ' +response.order_summary.coupon_saving : 0;
+                    document.getElementById('expected_delivery_charges').innerHTML = '₹ ' +  response.order_summary.expected_delivery_charges;
+                    document.getElementById('total_cart_amount').innerHTML = '₹ ' +  response.order_summary.total_cart_amount;
 
                     console.log((response.order_summary.coupon === null), response.order_summary.coupon)
                     // if (response.order_summary.coupon === null){
@@ -348,6 +349,7 @@ $_PAGE_NAME = "Cart"
             // Render HTML using the response data
 
             console.log("cOUPON lIST",response)
+            baseUrl = response.base_url
             if (response.status == 200)
             response.data.forEach(coupan => {
 
